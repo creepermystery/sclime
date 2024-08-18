@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp0qpeetaoevb"]
+
+[ext_resource type="Script" path="res://scripts/sclime.gd" id="1_4bexj"]
+[ext_resource type="PackedScene" uid="uid://bvce0kamrty8l" path="res://scenes/menu.tscn" id="1_j8e6c"]
+
+[node name="Sclime" type="Node"]
+script = ExtResource("1_4bexj")
+
+[node name="Menu" parent="." instance=ExtResource("1_j8e6c")]
+
+[connection signal="launch" from="Menu" to="." method="launch_game"]
