@@ -34,15 +34,25 @@ func _process(_delta: float) -> void:
 	if Input.is_action_pressed(player + "_dash"):
 		current_state = State.dash
 		texture.play("slime-dash")
+		default_hitbox.disabled = false
+		fall_hitbox.disabled = true
+		ducked_hitbox.disabled = true
 		get_tree().create_timer(0.375).timeout.connect(dash_end)
 
 func dash_end() -> void:
 	if is_on_floor():
 		current_state = State.default
+		texture.play("slime-idle")
+		default_hitbox.disabled = false
+		fall_hitbox.disabled = true
+		ducked_hitbox.disabled = true
 	else:
 		current_state = State.default
 		texture.play("slime-jump-start")
 		texture.frame = 7
+		default_hitbox.disabled = true
+		fall_hitbox.disabled = false
+		ducked_hitbox.disabled = true
 
 func _physics_process(delta: float) -> void:
 

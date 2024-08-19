@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://db7srs5qb4qwl"]
+[gd_scene load_steps=12 format=3 uid="uid://db7srs5qb4qwl"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_5whb1"]
 [ext_resource type="PackedScene" uid="uid://db3tteaqoh33y" path="res://scenes/heavy_platform.tscn" id="2_5rxeg"]
 [ext_resource type="Theme" uid="uid://d2qcoenct266e" path="res://GUI/main_theme.tres" id="2_a5l1t"]
+[ext_resource type="Texture2D" uid="uid://dqa87i6hdf8xa" path="res://sprites/fond.png" id="2_xysk8"]
 [ext_resource type="PackedScene" uid="uid://dlwr1jjubasjo" path="res://scenes/med_platform.tscn" id="3_j36vb"]
 [ext_resource type="PackedScene" uid="uid://8goy43y2udku" path="res://scenes/slime.tscn" id="4_2cr76"]
 [ext_resource type="PackedScene" uid="uid://bhjwbdvptnel2" path="res://scenes/light_platform.tscn" id="4_84tb3"]
@@ -20,6 +21,17 @@ distance = -607.0
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_5whb1")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xysk8")
 
 [node name="map" type="Node2D" parent="."]
 
