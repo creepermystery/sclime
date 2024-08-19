@@ -113,17 +113,21 @@ func _physics_process(delta: float) -> void:
 			texture.play("slime-fall")
 			default_hitbox.disabled = true
 			fall_hitbox.disabled = false
+			left_jump_hitbox.disabled = true
+			right_jump_hitbox.disabled = true 
 		elif velocity.y > 0 and direction_fall > 0:
 			current_state = State.fall
 			texture.play("slime-side-jump-fall")
 			default_hitbox.disabled = true
 			fall_hitbox.disabled = true
 			left_jump_hitbox.disabled = false
+			right_jump_hitbox.disabled = true
 		elif velocity.y > 0 and direction_fall < 0:
 			current_state = State.fall
 			texture.play("slime-side-jump-fall")
 			default_hitbox.disabled = true
 			fall_hitbox.disabled = true
+			left_jump_hitbox.disabled = true
 			right_jump_hitbox.disabled = false
 		velocity += get_gravity() * delta
 	# Hitting floor animation.
