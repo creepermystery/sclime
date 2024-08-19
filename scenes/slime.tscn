@@ -247,4 +247,4 @@ texture_filter = 1
 position = Vector2(-1, -1)
 scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_b8xge")
-animation = &"slime-dash"
+animation = &"slime-hit-floor"

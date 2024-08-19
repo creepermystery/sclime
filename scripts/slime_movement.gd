@@ -53,6 +53,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		move_and_slide()
 		return
+
 	# Handle duck.
 	if Input.is_action_just_pressed(player + "_duck") and is_on_floor():
 		texture.play("slime-hit-floor")
@@ -64,12 +65,18 @@ func _physics_process(delta: float) -> void:
 		texture.play("slime-hit-floor")
 		await get_tree().create_timer(0.25).timeout
 		current_state = State.default
+		texture.play("slime-idle")
+	# Fastfall
+	elif Input.is_action_just_pressed(player + "_duck") and not is_on_floor():
+		velocity += get_gravity() * delta * 30
 		
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis(player + "_left", player + "_right")
-	if direction:
+	if direction and current_state == State.default:
 		velocity.x = direction * SPEED
+	elif direction and current_state == State.duck:
+		velocity.x = direction * SPEED / 3
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
