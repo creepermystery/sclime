@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs2jr0c7j40kg"
-path="res://.godot/imported/platform.png-31d617383b56ee5e1a5b74de453e8a95.ctex"
+uid="uid://dw6xo1jfjf33b"
+path="res://.godot/imported/wood_platform.png-b09c4a4a952ef661b8840816f12037d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://map/platform.png"
-dest_files=["res://.godot/imported/platform.png-31d617383b56ee5e1a5b74de453e8a95.ctex"]
+source_file="res://map/wood_platform.png"
+dest_files=["res://.godot/imported/wood_platform.png-b09c4a4a952ef661b8840816f12037d9.ctex"]
 
 [params]
 
