@@ -1,13 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://8goy43y2udku"]
+[gd_scene load_steps=35 format=3 uid="uid://8goy43y2udku"]
 
 [ext_resource type="Script" path="res://scripts/slime_movement.gd" id="1_g2pts"]
 [ext_resource type="Texture2D" uid="uid://dbef3llpoh81v" path="res://sprites/slime_gris.png" id="2_cmiec"]
 [ext_resource type="Texture2D" uid="uid://fhkxe0b2oyup" path="res://sprites/slime_gris_dash_Sheet.png" id="3_fhh6g"]
 [ext_resource type="Texture2D" uid="uid://ds1q6umkj270c" path="res://sprites/Slime_idle_gray_Sheet.png" id="3_g7fry"]
 [ext_resource type="Texture2D" uid="uid://csmxlrylahdu7" path="res://sprites/slime_gris_saut_idle_Sheet.png" id="4_8lt3h"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_7t57o"]
-radius = 8.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j6agi"]
 atlas = ExtResource("3_fhh6g")
@@ -235,11 +232,19 @@ animations = [{
 "speed": 18.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7t57o"]
+radius = 9.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qnnqq"]
+radius = 3.0
+height = 26.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rktqs"]
+radius = 4.0
+height = 36.0
+
 [node name="Slime" type="CharacterBody2D"]
 script = ExtResource("1_g2pts")
-
-[node name="slime-hitbox" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_7t57o")
 
 [node name="slime-texture" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
@@ -247,4 +252,18 @@ texture_filter = 1
 position = Vector2(-1, -1)
 scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_b8xge")
-animation = &"slime-hit-floor"
+
+[node name="slime-hitbox-default" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_7t57o")
+
+[node name="slime-hitbox-ducked" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qnnqq")
+disabled = true
+
+[node name="slime-hitbox-fall" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("CapsuleShape2D_rktqs")
+disabled = true

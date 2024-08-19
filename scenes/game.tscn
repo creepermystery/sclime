@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://db7srs5qb4qwl"]
+[gd_scene load_steps=12 format=3 uid="uid://db7srs5qb4qwl"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_5whb1"]
 [ext_resource type="Theme" uid="uid://d2qcoenct266e" path="res://GUI/main_theme.tres" id="2_a5l1t"]
@@ -11,6 +11,17 @@ size = Vector2(201, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u6mti"]
 size = Vector2(176, 14)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2wpff"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w0pah"]
+distance = -655.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w0arl"]
+distance = -542.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_845hv"]
+distance = -607.0
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_5whb1")
@@ -99,4 +110,23 @@ offset_right = 80.0
 offset_bottom = 89.0
 text = "x"
 
+[node name="BlastZone" type="Area2D" parent="."]
+position = Vector2(542, 1)
+
+[node name="CollisionUp" type="CollisionShape2D" parent="BlastZone"]
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_2wpff")
+
+[node name="CollisionDown" type="CollisionShape2D" parent="BlastZone"]
+shape = SubResource("WorldBoundaryShape2D_w0pah")
+
+[node name="CollisionLeft" type="CollisionShape2D" parent="BlastZone"]
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_w0arl")
+
+[node name="CollisionRight" type="CollisionShape2D" parent="BlastZone"]
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_845hv")
+
 [connection signal="pressed" from="CanvasLayer/GUI/Button" to="." method="quit"]
+[connection signal="body_entered" from="BlastZone" to="." method="_blast_zone_entered"]
