@@ -56,9 +56,15 @@ func _physics_process(delta: float) -> void:
 	# Handle duck.
 	if Input.is_action_just_pressed(player + "_duck") and is_on_floor():
 		texture.play("slime-hit-floor")
+		texture.pause()
 		current_state = State.duck
 		move_and_slide()
 		return
+	elif Input.is_action_just_released(player + "_duck") and current_state == State.duck and is_on_floor() :
+		texture.play("slime-hit-floor")
+		await get_tree().create_timer(0.25).timeout
+		current_state = State.default
+		
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
