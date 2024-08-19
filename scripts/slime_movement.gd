@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 	
-	# Add the gravity.
+	# Mid air physics.
 	if not is_on_floor():
 		if velocity.y > 0:
 			current_state = State.fall
@@ -61,20 +61,18 @@ func _physics_process(delta: float) -> void:
 		return
 
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis(player + "_left", player + "_right")
-	
-	if direction > 0 and current_state == State.default :
-		texture.flip_h = false
-	elif direction < 0 and current_state == State.default :
-		texture.flip_h = true
-
-	elif current_state == State.default and is_on_floor() :
-		texture.play("slime-idle")
-
 	if direction:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
+
+	# Animating directions and idle
+	if direction > 0:
+		texture.flip_h = false
+	elif direction < 0:
+		texture.flip_h = true
+	if direction == 0 and current_state == State.default and is_on_floor() :
+		texture.play("slime-idle")
 	move_and_slide()
