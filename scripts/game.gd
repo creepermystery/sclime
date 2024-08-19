@@ -26,5 +26,5 @@ func _process(_delta: float) -> void:
 	camera.zoom = Vector2.ONE * (0.2*camera.zoom.x + ratio*0.8)
 
 
-func _blast_zone_entered(body: Node2D) -> void:
+func _blast_zone_entered(_body: Node2D) -> void:
 	pass # Replace with function body.

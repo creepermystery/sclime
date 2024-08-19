@@ -3,10 +3,8 @@
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_5whb1"]
 [ext_resource type="PackedScene" path="res://scenes/heavy_platform.tscn" id="2_5rxeg"]
 [ext_resource type="Theme" uid="uid://d2qcoenct266e" path="res://GUI/main_theme.tres" id="2_a5l1t"]
-
 [ext_resource type="Texture2D" uid="uid://dqa87i6hdf8xa" path="res://sprites/fond.png" id="2_xysk8"]
-[ext_resource type="PackedScene" uid="uid://dlwr1jjubasjo" path="res://scenes/med_platform.tscn" id="3_j36vb"]
-
+[ext_resource type="PackedScene" path="res://scenes/med_platform.tscn" id="3_j36vb"]
 [ext_resource type="PackedScene" uid="uid://8goy43y2udku" path="res://scenes/slime.tscn" id="4_2cr76"]
 [ext_resource type="PackedScene" path="res://scenes/light_platform.tscn" id="4_84tb3"]
 
@@ -59,13 +57,11 @@ position = Vector2(1427, 189)
 position = Vector2(-335, 693)
 scale = Vector2(1, 1)
 player = "p1"
-size = 50.0
 
 [node name="Player2" parent="." instance=ExtResource("4_2cr76")]
 position = Vector2(1529, 704)
 scale = Vector2(1, 1)
 player = "p2"
-size = 50.0
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(570, 331)

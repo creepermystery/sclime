@@ -8,6 +8,8 @@ extends CharacterBody2D
 @onready var default_hitbox: CollisionShape2D = get_node("SlimeHitboxDefault")
 @onready var ducked_hitbox: CollisionShape2D = get_node("SlimeHitboxDucked")
 @onready var fall_hitbox: CollisionShape2D = get_node("SlimeHitboxFall")
+@onready var right_jump_hitbox: CollisionShape2D = get_node("SlimeHitboxRightJump")
+@onready var left_jump_hitbox: CollisionShape2D = get_node("SlimeHitboxLeftJump")
 
 const SPEED = 700.0
 const DASH_SPEED = 1300.0
@@ -30,13 +32,24 @@ func set_color(color: Color):
 func _ready() -> void:
 	size = size
 
-func jump_hitbox_to_normal() -> void :
+func hitbox_to_normal() -> void :
 	default_hitbox.disabled = false
 	fall_hitbox.disabled = true
+	ducked_hitbox.disabled = true
+	right_jump_hitbox.disabled = true
+	left_jump_hitbox.disabled = true
 
 func normal_hitbox_to_jump() -> void:
 	default_hitbox.disabled = true
 	fall_hitbox.disabled = false
+
+func normal_hitbox_to_right_jump() -> void:
+	default_hitbox.disabled = true
+	right_jump_hitbox.disabled = false
+
+func normal_hitbox_to_left_jump() -> void:
+	default_hitbox.disabled = true
+	left_jump_hitbox.disabled = false
 
 func _process(_delta: float) -> void:	
 	if Input.is_action_pressed(player + "_dash"):
@@ -73,11 +86,22 @@ func _physics_process(delta: float) -> void:
 
 	# Mid air physics.
 	if not is_on_floor():
-		if velocity.y > 0:
+		var direction_fall := Input.get_axis(player + "_left", player + "_right")
+		if velocity.y > 0 and direction_fall == 0:
 			current_state = State.fall
 			texture.play("slime-fall")
 			default_hitbox.disabled = true
 			fall_hitbox.disabled = false
+		elif velocity.y > 0 and direction_fall > 0:
+			current_state = State.fall
+			texture.play("slime-side-jump-fall")
+			default_hitbox.disabled = true
+			left_jump_hitbox.disabled = false
+		elif velocity.y > 0 and direction_fall < 0:
+			current_state = State.fall
+			texture.play("slime-side-jump-fall")
+			default_hitbox.disabled = true
+			right_jump_hitbox.disabled = false
 		velocity += get_gravity() * delta
 	# Hitting floor animation.
 	elif current_state == State.fall :
@@ -87,24 +111,43 @@ func _physics_process(delta: float) -> void:
 		await get_tree().create_timer(0.25).timeout
 		current_state = State.default
 		texture.play("slime-idle")
-		default_hitbox.disabled = false
-		ducked_hitbox.disabled = true
+		hitbox_to_normal()
 		if Input.is_action_pressed(player + "_duck"):
 			texture.play("slime-hit-floor")
 			texture.pause()
 			default_hitbox.disabled = true
 			ducked_hitbox.disabled = false
 			current_state = State.duck
-	
+
 	# Handle jump.
+	var direction_jump := Input.get_axis(player + "_left", player + "_right")
 	if Input.is_action_just_pressed(player + "_jump") and is_on_floor():
-		current_state = State.jump
-		get_tree().create_timer(0.3).timeout.connect(normal_hitbox_to_jump)
-		texture.play("slime-jump-start")
-		velocity.y = JUMP_VELOCITY
-		get_tree().create_timer(0.6).timeout.connect(jump_hitbox_to_normal)
-		move_and_slide()
-		return
+		if direction_jump == 0:
+			current_state = State.jump
+			get_tree().create_timer(0.3).timeout.connect(normal_hitbox_to_jump)
+			texture.play("slime-jump-start")
+			velocity.y = JUMP_VELOCITY
+			get_tree().create_timer(0.6).timeout.connect(hitbox_to_normal)
+			move_and_slide()
+			return
+		# Jump to the right
+		elif direction_jump > 0 and Input.is_action_just_pressed(player + "_jump") and is_on_floor():
+			current_state = State.jump
+			get_tree().create_timer(0.3).timeout.connect(normal_hitbox_to_right_jump)
+			texture.play("slime-side-jump-start")
+			velocity.y = JUMP_VELOCITY
+			get_tree().create_timer(0.6).timeout.connect(hitbox_to_normal)
+			move_and_slide()
+			return
+		# Jump to the left
+		elif direction_jump < 0 and Input.is_action_just_pressed(player + "_jump") and is_on_floor():
+			current_state = State.jump
+			get_tree().create_timer(0.3).timeout.connect(normal_hitbox_to_left_jump)
+			texture.play("slime-side-jump-start")
+			velocity.y = JUMP_VELOCITY
+			get_tree().create_timer(0.6).timeout.connect(hitbox_to_normal)
+			move_and_slide()
+			return
 
 	# Handle duck.
 	if Input.is_action_just_pressed(player + "_duck") and is_on_floor():
