@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://db7srs5qb4qwl"]
+[gd_scene load_steps=12 format=3 uid="uid://db7srs5qb4qwl"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_5whb1"]
 [ext_resource type="PackedScene" uid="uid://db3tteaqoh33y" path="res://scenes/heavy_platform.tscn" id="2_5rxeg"]
@@ -7,8 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dlwr1jjubasjo" path="res://scenes/med_platform.tscn" id="3_j36vb"]
 [ext_resource type="PackedScene" uid="uid://8goy43y2udku" path="res://scenes/slime.tscn" id="4_2cr76"]
 [ext_resource type="PackedScene" uid="uid://bhjwbdvptnel2" path="res://scenes/light_platform.tscn" id="4_84tb3"]
-[ext_resource type="Texture2D" uid="uid://2m3gjnh44doe" path="res://GUI/coeur_3.png" id="8_0owou"]
-[ext_resource type="Texture2D" uid="uid://dbef3llpoh81v" path="res://sprites/slime_gris.png" id="9_63ggq"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2wpff"]
 
@@ -28,7 +26,6 @@ script = ExtResource("1_5whb1")
 layer = -1
 
 [node name="TextureRect" type="TextureRect" parent="Background"]
-texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -57,7 +54,7 @@ position = Vector2(616, 7)
 position = Vector2(1427, 189)
 
 [node name="Player1" parent="." instance=ExtResource("4_2cr76")]
-position = Vector2(-432, 650)
+position = Vector2(-335, 650)
 scale = Vector2(1, 1)
 player = "1"
 
@@ -79,7 +76,7 @@ rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_2wpff")
 
 [node name="CollisionDown" type="CollisionShape2D" parent="BlastZone"]
-position = Vector2(-12, 2235)
+position = Vector2(-63, 1206)
 shape = SubResource("WorldBoundaryShape2D_w0pah")
 
 [node name="CollisionLeft" type="CollisionShape2D" parent="BlastZone"]
@@ -104,103 +101,31 @@ grow_vertical = 2
 theme = ExtResource("2_a5l1t")
 
 [node name="Button" type="Button" parent="GUILayer/GUI"]
-layout_mode = 0
 offset_left = 29.0
 offset_top = 27.0
 offset_right = 80.0
 offset_bottom = 89.0
 text = "x"
 
-[node name="Player1" type="Control" parent="GUILayer"]
-layout_mode = 3
+[node name="Health1" type="TextureRect" parent="GUILayer"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -576.0
-offset_top = -16.0
-offset_right = -536.0
-offset_bottom = 24.0
+offset_left = -195.0
+offset_top = 25.0
+offset_right = -155.0
+offset_bottom = 65.0
 grow_horizontal = 2
 
-[node name="Health" type="TextureRect" parent="GUILayer/Player1"]
-texture_filter = 1
-layout_mode = 1
+[node name="Health2" type="TextureRect" parent="GUILayer"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 292.0
-offset_top = 20.0
-offset_right = 332.0
-offset_bottom = 60.0
-grow_horizontal = 2
-scale = Vector2(2.52807, 2.47349)
-texture = ExtResource("8_0owou")
-
-[node name="Sprite" type="TextureRect" parent="GUILayer/Player1"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 213.0
-offset_top = 16.0
-offset_right = 253.0
-offset_bottom = 56.0
-scale = Vector2(2.89286, 2.88)
-texture = ExtResource("9_63ggq")
-
-[node name="Size" type="RichTextLabel" parent="GUILayer/Player1"]
-layout_mode = 0
-offset_left = 271.0
-offset_top = 96.0
-offset_right = 407.0
-offset_bottom = 155.0
-theme = ExtResource("2_a5l1t")
-text = "0%"
-
-[node name="Player2" type="Control" parent="GUILayer"]
-layout_mode = 3
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -566.0
-offset_top = -26.0
-offset_right = -526.0
-offset_bottom = 14.0
-grow_horizontal = 2
-
-[node name="Health" type="TextureRect" parent="GUILayer/Player2"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 786.0
+offset_left = 230.0
 offset_top = 24.0
-offset_right = 826.0
+offset_right = 270.0
 offset_bottom = 64.0
 grow_horizontal = 2
-scale = Vector2(2.55405, 2.55501)
-texture = ExtResource("8_0owou")
 
-[node name="Sprite" type="TextureRect" parent="GUILayer/Player2"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 886.0
-offset_top = 21.0
-offset_right = 926.0
-offset_bottom = 61.0
-scale = Vector2(2.89286, 2.88)
-texture = ExtResource("9_63ggq")
-flip_h = true
-
-[node name="Size" type="RichTextLabel" parent="GUILayer/Player2"]
-layout_mode = 0
-offset_left = 822.0
-offset_top = 99.0
-offset_right = 958.0
-offset_bottom = 157.0
-theme = ExtResource("2_a5l1t")
-text = "0%"
-
-[connection signal="change_size" from="Player1" to="." method="update_player_size" binds= ["1"]]
-[connection signal="change_size" from="Player2" to="." method="update_player_size" binds= ["2"]]
 [connection signal="body_entered" from="BlastZone" to="." method="_blast_zone_entered"]
 [connection signal="pressed" from="GUILayer/GUI/Button" to="." method="quit"]
