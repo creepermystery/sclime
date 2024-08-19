@@ -22,9 +22,7 @@ var current_state: State = State.default
 		return size
 	set(value): 
 		size = clamp(value, 5, 100)
-		if texture:
-			texture.scale = Vector2.ONE * value / 100 * 52.5
-			get_node("slime-hitbox").scale = Vector2.ONE * value / 100 * 30
+		scale =  Vector2.ONE * value * 0.3
 
 func set_color(color: Color):
 	texture.self_modulate = color

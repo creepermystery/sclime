@@ -244,17 +244,16 @@ radius = 4.0
 height = 36.0
 
 [node name="Slime" type="CharacterBody2D"]
+scale = Vector2(30, 30)
 script = ExtResource("1_g2pts")
 
-[node name="slime-hitbox" type="CollisionShape2D" parent="."]
-scale = Vector2(15, 15)
-shape = SubResource("CircleShape2D_7t57o")
+[node name="Aura" type="Sprite2D" parent="."]
 
 [node name="slime-texture" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(-1, -1)
-scale = Vector2(26.25, 26.25)
+scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_b8xge")
 
 [node name="slime-hitbox-default" type="CollisionShape2D" parent="."]
