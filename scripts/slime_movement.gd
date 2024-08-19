@@ -73,7 +73,7 @@ func normal_hitbox_to_left_jump() -> void:
 	left_jump_hitbox.disabled = false
 
 func _process(_delta: float) -> void:	
-	if Input.is_action_pressed("p" + player + "_dash"):
+	if Input.is_action_pressed(player + "_dash"):
 		current_state = State.dash
 		texture.play("slime-dash")
 		default_hitbox.disabled = false
@@ -107,7 +107,7 @@ func _physics_process(delta: float) -> void:
 
 	# Mid air physics.
 	if not is_on_floor():
-		var direction_fall := Input.get_axis("p" + player + "_left", "p" + player + "_right")
+		var direction_fall := Input.get_axis(player + "_left", player + "_right")
 		if velocity.y > 0 and direction_fall == 0:
 			current_state = State.fall
 			texture.play("slime-fall")
@@ -134,7 +134,7 @@ func _physics_process(delta: float) -> void:
 		current_state = State.default
 		texture.play("slime-idle")
 		hitbox_to_normal()
-		if Input.is_action_pressed("p" + player + "_duck"):
+		if Input.is_action_pressed(player + "_duck"):
 			texture.play("slime-hit-floor")
 			texture.pause()
 			default_hitbox.disabled = true
@@ -142,8 +142,8 @@ func _physics_process(delta: float) -> void:
 			current_state = State.duck
 
 	# Handle jump.
-	var direction_jump := Input.get_axis("p" + player + "_left", "p" + player + "_right")
-	if Input.is_action_just_pressed("p" + player + "_jump") and is_on_floor():
+	var direction_jump := Input.get_axis(player + "_left", player + "_right")
+	if Input.is_action_just_pressed(player + "_jump") and is_on_floor():
 		if direction_jump == 0:
 			current_state = State.jump
 			get_tree().create_timer(0.3).timeout.connect(normal_hitbox_to_jump)
@@ -153,7 +153,7 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 			return
 		# Jump to the right
-		elif direction_jump > 0 and Input.is_action_just_pressed("p" + player + "_jump") and is_on_floor():
+		elif direction_jump > 0 and Input.is_action_just_pressed(player + "_jump") and is_on_floor():
 			current_state = State.jump
 			get_tree().create_timer(0.3).timeout.connect(normal_hitbox_to_right_jump)
 			texture.play("slime-side-jump-start")
@@ -162,7 +162,7 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 			return
 		# Jump to the left
-		elif direction_jump < 0 and Input.is_action_just_pressed("p" + player + "_jump") and is_on_floor():
+		elif direction_jump < 0 and Input.is_action_just_pressed(player + "_jump") and is_on_floor():
 			current_state = State.jump
 			get_tree().create_timer(0.3).timeout.connect(normal_hitbox_to_left_jump)
 			texture.play("slime-side-jump-start")
@@ -172,7 +172,7 @@ func _physics_process(delta: float) -> void:
 			return
 
 	# Handle duck.
-	if Input.is_action_just_pressed("p" + player + "_duck") and is_on_floor():
+	if Input.is_action_just_pressed(player + "_duck") and is_on_floor():
 		texture.play("slime-hit-floor")
 		texture.pause()
 		default_hitbox.disabled = true
@@ -180,7 +180,7 @@ func _physics_process(delta: float) -> void:
 		current_state = State.duck
 		move_and_slide()
 		return
-	elif Input.is_action_just_released("p" + player + "_duck") and current_state == State.duck and is_on_floor() :
+	elif Input.is_action_just_released(player + "_duck") and current_state == State.duck and is_on_floor() :
 		texture.play("slime-hit-floor")
 		await get_tree().create_timer(0.25).timeout
 		current_state = State.default
@@ -188,7 +188,7 @@ func _physics_process(delta: float) -> void:
 		ducked_hitbox.disabled = true
 		texture.play("slime-idle")
 	# Fastfall
-	elif Input.is_action_just_pressed("p" + player + "_duck") and not is_on_floor():
+	elif Input.is_action_just_pressed(player + "_duck") and not is_on_floor():
 		velocity += get_gravity() * delta * 80
 
 	# Headbump attacks
@@ -206,7 +206,7 @@ func _physics_process(delta: float) -> void:
 		texture.play("slime-idle")
 
 	# Get the input direction and handle the movement/deceleration.
-	var direction := Input.get_axis("p" + player + "_left", "p" + player + "_right")
+	var direction := Input.get_axis(player + "_left", player + "_right")
 	if direction and current_state != State.duck :
 		velocity.x = direction * SPEED
 	elif direction and current_state == State.duck:
