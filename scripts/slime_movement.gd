@@ -4,7 +4,8 @@ extends CharacterBody2D
 @export var player: String
 
 @onready var texture: AnimatedSprite2D = %"slime-texture"
-const SPEED = 300.0
+
+const SPEED = 700.0
 const DASH_SPEED = 600.0
 const JUMP_VELOCITY = -1000.0
 
@@ -12,8 +13,20 @@ enum State {default, dash, jump, duck, fall}
 
 var current_state: State = State.default
 
+@export var size: float = 50:
+	get:
+		return size
+	set(value): 
+		size = clamp(value, 5, 100)
+		if texture:
+			texture.scale = Vector2.ONE * value / 100 * 52.5
+			get_node("slime-hitbox").scale = Vector2.ONE * value / 100 * 30
+
 func set_color(color: Color):
 	texture.self_modulate = color
+
+func _ready() -> void:
+	size = size
 
 func _process(delta: float) -> void:
 	

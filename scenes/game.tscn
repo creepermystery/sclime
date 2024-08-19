@@ -13,29 +13,29 @@ script = ExtResource("1_5whb1")
 [node name="map" type="Node2D" parent="."]
 
 [node name="HeavyPlatform" parent="map" instance=ExtResource("2_5rxeg")]
-position = Vector2(534, 869)
+position = Vector2(564, 1094)
 
 [node name="MedPlatform2" parent="map" instance=ExtResource("3_j36vb")]
-position = Vector2(1706, 427)
+position = Vector2(2379, 470)
 
 [node name="MedPlatform" parent="map" instance=ExtResource("3_j36vb")]
-position = Vector2(-548, 369)
+position = Vector2(-1200, 412)
 
 [node name="LightPlatform" parent="map" instance=ExtResource("4_84tb3")]
-position = Vector2(-87, 108)
+position = Vector2(-370, 108)
 
 [node name="LightPlatform2" parent="map" instance=ExtResource("4_84tb3")]
 position = Vector2(616, 7)
 
 [node name="LightPlatform3" parent="map" instance=ExtResource("4_84tb3")]
-position = Vector2(1261, 178)
+position = Vector2(1427, 189)
 
 [node name="Player1" parent="." instance=ExtResource("4_2cr76")]
-position = Vector2(547, 301)
+position = Vector2(-335, 693)
 player = "p1"
 
 [node name="Player2" parent="." instance=ExtResource("4_2cr76")]
-position = Vector2(589, 301)
+position = Vector2(1529, 704)
 player = "p2"
 
 [node name="Camera" type="Camera2D" parent="."]
