@@ -249,24 +249,25 @@ script = ExtResource("1_g2pts")
 
 [node name="Aura" type="Sprite2D" parent="."]
 
-[node name="slime-texture" type="AnimatedSprite2D" parent="."]
+[node name="SlimeTexture" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(-1, -1)
 scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_b8xge")
+animation = &"slime-dash"
 
-[node name="slime-hitbox-default" type="CollisionShape2D" parent="."]
+[node name="SlimeHitboxDefault" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_7t57o")
 
-[node name="slime-hitbox-ducked" type="CollisionShape2D" parent="."]
+[node name="SlimeHitboxDucked" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_qnnqq")
 disabled = true
 
-[node name="slime-hitbox-fall" type="CollisionShape2D" parent="."]
+[node name="SlimeHitboxFall" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10)
 shape = SubResource("CapsuleShape2D_rktqs")
 disabled = true
