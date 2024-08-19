@@ -71,6 +71,12 @@ func _physics_process(delta: float) -> void:
 		texture.play("slime-idle")
 		default_hitbox.disabled = false
 		ducked_hitbox.disabled = true
+		if Input.is_action_pressed(player + "_duck"):
+			texture.play("slime-hit-floor")
+			texture.pause()
+			default_hitbox.disabled = true
+			ducked_hitbox.disabled = false
+			current_state = State.duck
 	
 	# Handle jump.
 	if Input.is_action_just_pressed(player + "_jump") and is_on_floor():

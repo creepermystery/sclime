@@ -86,21 +86,21 @@ region = Rect2(96, 0, 32, 32)
 atlas = ExtResource("4_8lt3h")
 region = Rect2(40, 0, 40, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e8wrx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_m16ab"]
 atlas = ExtResource("4_8lt3h")
-region = Rect2(80, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6w5md"]
-atlas = ExtResource("4_8lt3h")
-region = Rect2(120, 0, 40, 40)
+region = Rect2(200, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vn85b"]
 atlas = ExtResource("4_8lt3h")
 region = Rect2(160, 0, 40, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m16ab"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6w5md"]
 atlas = ExtResource("4_8lt3h")
-region = Rect2(200, 0, 40, 40)
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8wrx"]
+atlas = ExtResource("4_8lt3h")
+region = Rect2(80, 0, 40, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b8xge"]
 animations = [{
@@ -203,16 +203,16 @@ animations = [{
 "texture": SubResource("AtlasTexture_2bpap")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e8wrx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6w5md")
+"texture": SubResource("AtlasTexture_m16ab")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vn85b")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m16ab")
+"texture": SubResource("AtlasTexture_6w5md")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8wrx")
 }],
 "loop": false,
 "name": &"slime-jump-start",
