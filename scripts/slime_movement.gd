@@ -78,6 +78,8 @@ func _process(_delta: float) -> void:
 		texture.play("slime-dash")
 		default_hitbox.disabled = false
 		fall_hitbox.disabled = true
+		left_jump_hitbox.disabled = true
+		right_jump_hitbox.disabled = true
 		ducked_hitbox.disabled = true
 		get_tree().create_timer(0.375).timeout.connect(dash_end)
 
