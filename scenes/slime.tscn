@@ -76,6 +76,21 @@ animations = [{
 "texture": SubResource("AtlasTexture_0svdh")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_0svdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0svdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0svdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0svdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0svdh")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_n5lut")
 }, {
 "duration": 1.0,
@@ -115,7 +130,7 @@ shape = SubResource("CircleShape2D_7t57o")
 [node name="slime-texture" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
-position = Vector2(-0.999999, -11)
+position = Vector2(-2, -8)
 scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_b8xge")
 animation = &"slime-dash"
