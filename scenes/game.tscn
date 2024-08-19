@@ -76,8 +76,10 @@ texture = ExtResource("3_rd32i")
 
 [node name="Player1" parent="." instance=ExtResource("4_2cr76")]
 position = Vector2(234, 207)
+player = "p1"
 
 [node name="Player2" parent="." instance=ExtResource("4_2cr76")]
 position = Vector2(593, 294)
+player = "p2"
 
 [connection signal="pressed" from="GUI/Button" to="." method="quit"]
