@@ -4,7 +4,6 @@ signal quit_game()
 
 @export var zoom = 2.3
 
-@onready var background: TextureRect = get_node("Background/Control/TextureRect")
 @onready var camera: Camera2D = get_node("Camera")
 @onready var p1: CharacterBody2D = get_node("Player1")
 @onready var p2: CharacterBody2D = get_node("Player2")
@@ -27,4 +26,4 @@ func _process(_delta: float) -> void:
 
 
 func _blast_zone_entered(_body: Node2D) -> void:
-	pass # Replace with function body.
+	quit()

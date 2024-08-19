@@ -13,5 +13,8 @@ func launch_game(color1: Color, color2: Color):
 
 func quit_game():
 	if menu:
-		remove_child(get_child(0))
-		add_child(menu)
+		deferred_quit.call_deferred()
+
+func deferred_quit():
+	remove_child(get_child(0))
+	add_child(menu)
