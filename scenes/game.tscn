@@ -52,6 +52,24 @@ player = "p2"
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(570, 331)
 
+[node name="BlastZone" type="Area2D" parent="."]
+position = Vector2(542, 1)
+
+[node name="CollisionUp" type="CollisionShape2D" parent="BlastZone"]
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_2wpff")
+
+[node name="CollisionDown" type="CollisionShape2D" parent="BlastZone"]
+shape = SubResource("WorldBoundaryShape2D_w0pah")
+
+[node name="CollisionLeft" type="CollisionShape2D" parent="BlastZone"]
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_w0arl")
+
+[node name="CollisionRight" type="CollisionShape2D" parent="BlastZone"]
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_845hv")
+
 [node name="GUILayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" type="Control" parent="GUILayer"]
@@ -73,22 +91,5 @@ offset_right = 80.0
 offset_bottom = 89.0
 text = "x"
 
-[node name="BlastZone" type="Area2D" parent="."]
-position = Vector2(542, 1)
-
-[node name="CollisionUp" type="CollisionShape2D" parent="BlastZone"]
-rotation = 3.14159
-shape = SubResource("WorldBoundaryShape2D_2wpff")
-
-[node name="CollisionDown" type="CollisionShape2D" parent="BlastZone"]
-shape = SubResource("WorldBoundaryShape2D_w0pah")
-
-[node name="CollisionLeft" type="CollisionShape2D" parent="BlastZone"]
-rotation = 1.5708
-shape = SubResource("WorldBoundaryShape2D_w0arl")
-
-[node name="CollisionRight" type="CollisionShape2D" parent="BlastZone"]
-rotation = 4.71239
-shape = SubResource("WorldBoundaryShape2D_845hv")
-
 [connection signal="body_entered" from="BlastZone" to="." method="_blast_zone_entered"]
+[connection signal="pressed" from="GUILayer/GUI/Button" to="." method="quit"]

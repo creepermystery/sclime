@@ -10,7 +10,7 @@ extends CharacterBody2D
 @onready var fall_hitbox: CollisionShape2D = get_node("slime-hitbox-fall")
 
 const SPEED = 700.0
-const DASH_SPEED = 600.0
+const DASH_SPEED = 1300.0
 const JUMP_VELOCITY = -1000.0
 
 enum State {default, dash, jump, duck, fall, dead}
@@ -37,7 +37,12 @@ func _process(delta: float) -> void:
 		get_tree().create_timer(0.375).timeout.connect(dash_end)
 
 func dash_end() -> void:
-	current_state = State.default
+	if is_on_floor():
+		current_state = State.default
+	else:
+		current_state = State.default
+		texture.play("slime-jump-start")
+		texture.frame = 7
 
 func _physics_process(delta: float) -> void:
 	
