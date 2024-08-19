@@ -179,7 +179,7 @@ func _physics_process(delta: float) -> void:
 		texture.play("slime-idle")
 	# Fastfall
 	elif Input.is_action_just_pressed(player + "_duck") and not is_on_floor():
-		velocity += get_gravity() * delta * 30
+		velocity += get_gravity() * delta * 80
 		
 
 	# Get the input direction and handle the movement/deceleration.

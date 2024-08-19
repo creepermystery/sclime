@@ -1,5 +1,4 @@
-
-[gd_scene load_steps=35 format=3 uid="uid://8goy43y2udku"]
+[gd_scene load_steps=49 format=3 uid="uid://8goy43y2udku"]
 
 [ext_resource type="Script" path="res://scripts/slime_movement.gd" id="1_g2pts"]
 [ext_resource type="Texture2D" uid="uid://dbef3llpoh81v" path="res://sprites/slime_gris.png" id="2_cmiec"]
@@ -352,7 +351,6 @@ texture_filter = 1
 position = Vector2(-1, -1)
 scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_b8xge")
-
 animation = &"slime-side-jump-start"
 frame = 3
 
