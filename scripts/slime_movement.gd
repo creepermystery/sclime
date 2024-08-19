@@ -11,12 +11,14 @@ extends CharacterBody2D
 @onready var fall_hitbox: CollisionShape2D = get_node("SlimeHitboxFall")
 @onready var right_jump_hitbox: CollisionShape2D = get_node("SlimeHitboxRightJump")
 @onready var left_jump_hitbox: CollisionShape2D = get_node("SlimeHitboxLeftJump")
+@onready var right_attack_hurtbox: CollisionShape2D = get_node("HurtboxRight/HurtboxRightCollision")
+@onready var left_attack_hurtbox: CollisionShape2D = get_node("HurtboxLeft/HurtboxLeftCollision")
 
 const SPEED = 700.0
 const DASH_SPEED = 1300.0
 const JUMP_VELOCITY = -1000.0
 
-enum State {default, dash, jump, duck, fall, dead}
+enum State {default, dash, jump, duck, fall, attack}
 
 var current_state: State = State.default
 
@@ -181,7 +183,20 @@ func _physics_process(delta: float) -> void:
 	# Fastfall
 	elif Input.is_action_just_pressed(player + "_duck") and not is_on_floor():
 		velocity += get_gravity() * delta * 80
-		
+	
+	# Headbump attacks
+	if Input.is_action_just_pressed(player + "_attack"):
+		current_state = State.attack
+		texture.play("slime-headbump")
+		if texture.flip_h :
+			left_attack_hurtbox.disabled = false
+		else :
+			right_attack_hurtbox.disabled = false
+		await get_tree().create_timer(1).timeout
+		right_attack_hurtbox.disabled = true
+		left_attack_hurtbox.disabled = true
+		hitbox_to_normal()
+		texture.play("slime-idle")
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis(player + "_left", player + "_right")
