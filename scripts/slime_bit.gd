@@ -7,7 +7,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func stop_texture(texture: AnimatedSprite2D) -> void :
@@ -16,11 +16,10 @@ func stop_texture(texture: AnimatedSprite2D) -> void :
 func start_texture(texture: AnimatedSprite2D) -> void :
 	if linear_velocity.y == 0 :
 		texture.play("touch-ground")
-		get_tree().create_timer(1).timeout.connect(stop_texture.bind(texture))
+		get_tree().create_timer(1.1).timeout.connect(stop_texture.bind(texture))
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var texture: AnimatedSprite2D = get_node("Texture")
-	var hitbox: CollisionShape2D = get_node("Hitbox")
 	if linear_velocity.y == 0 :
 		return
 	texture.play("default")
