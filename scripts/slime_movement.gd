@@ -30,6 +30,14 @@ func set_color(color: Color):
 func _ready() -> void:
 	size = size
 
+func jump_hitbox_to_normal() -> void :
+	default_hitbox.disabled = false
+	fall_hitbox.disabled = true
+
+func normal_hitbox_to_jump() -> void:
+	default_hitbox.disabled = true
+	fall_hitbox.disabled = false
+
 func _process(_delta: float) -> void:	
 	if Input.is_action_pressed(player + "_dash"):
 		current_state = State.dash
@@ -81,8 +89,10 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed(player + "_jump") and is_on_floor():
 		current_state = State.jump
+		get_tree().create_timer(0.3).timeout.connect(normal_hitbox_to_jump)
 		texture.play("slime-jump-start")
 		velocity.y = JUMP_VELOCITY
+		get_tree().create_timer(0.6).timeout.connect(jump_hitbox_to_normal)
 		move_and_slide()
 		return
 
