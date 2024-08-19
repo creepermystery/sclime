@@ -1,16 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://db7srs5qb4qwl"]
+[gd_scene load_steps=7 format=3 uid="uid://db7srs5qb4qwl"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_5whb1"]
+[ext_resource type="PackedScene" uid="uid://db3tteaqoh33y" path="res://scenes/heavy_platform.tscn" id="2_5rxeg"]
 [ext_resource type="Theme" uid="uid://d2qcoenct266e" path="res://GUI/main_theme.tres" id="2_a5l1t"]
-[ext_resource type="Texture2D" uid="uid://cs2jr0c7j40kg" path="res://map/grass_platform.png" id="3_rd32i"]
+[ext_resource type="PackedScene" uid="uid://dlwr1jjubasjo" path="res://scenes/med_platform.tscn" id="3_j36vb"]
 [ext_resource type="PackedScene" uid="uid://8goy43y2udku" path="res://scenes/slime.tscn" id="4_2cr76"]
-[ext_resource type="Texture2D" uid="uid://dw6xo1jfjf33b" path="res://map/wood_platform.png" id="4_oaaie"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0bcrm"]
-size = Vector2(201, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u6mti"]
-size = Vector2(176, 14)
+[ext_resource type="PackedScene" uid="uid://bhjwbdvptnel2" path="res://scenes/light_platform.tscn" id="4_84tb3"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2wpff"]
 
@@ -28,55 +23,23 @@ script = ExtResource("1_5whb1")
 
 [node name="map" type="Node2D" parent="."]
 
-[node name="platform" type="StaticBody2D" parent="map"]
-texture_filter = 1
-position = Vector2(580, 571)
-scale = Vector2(5.336, 5)
+[node name="HeavyPlatform" parent="map" instance=ExtResource("2_5rxeg")]
+position = Vector2(534, 869)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="map/platform"]
-shape = SubResource("RectangleShape2D_0bcrm")
+[node name="MedPlatform2" parent="map" instance=ExtResource("3_j36vb")]
+position = Vector2(1706, 427)
 
-[node name="Sprite2D" type="Sprite2D" parent="map/platform"]
-position = Vector2(0.249998, 0.5)
-scale = Vector2(0.264375, 0.216667)
-texture = ExtResource("3_rd32i")
+[node name="MedPlatform" parent="map" instance=ExtResource("3_j36vb")]
+position = Vector2(-548, 369)
 
-[node name="platform2" type="StaticBody2D" parent="map"]
-texture_filter = 1
-position = Vector2(374, 471)
+[node name="LightPlatform" parent="map" instance=ExtResource("4_84tb3")]
+position = Vector2(-87, 108)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="map/platform2"]
-shape = SubResource("RectangleShape2D_u6mti")
+[node name="LightPlatform2" parent="map" instance=ExtResource("4_84tb3")]
+position = Vector2(616, 7)
 
-[node name="Sprite2D" type="Sprite2D" parent="map/platform2"]
-position = Vector2(0.249998, 0.5)
-scale = Vector2(0.264375, 0.216667)
-texture = ExtResource("4_oaaie")
-
-[node name="platform3" type="StaticBody2D" parent="map"]
-texture_filter = 1
-position = Vector2(840, 253)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="map/platform3"]
-shape = SubResource("RectangleShape2D_u6mti")
-
-[node name="Sprite2D" type="Sprite2D" parent="map/platform3"]
-position = Vector2(0.249998, 0.5)
-scale = Vector2(0.264375, 0.216667)
-texture = ExtResource("4_oaaie")
-
-[node name="platform4" type="StaticBody2D" parent="map"]
-texture_filter = 1
-position = Vector2(602, 325)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="map/platform4"]
-position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_u6mti")
-
-[node name="Sprite2D" type="Sprite2D" parent="map/platform4"]
-position = Vector2(0.249998, 0.5)
-scale = Vector2(0.264375, 0.216667)
-texture = ExtResource("4_oaaie")
+[node name="LightPlatform3" parent="map" instance=ExtResource("4_84tb3")]
+position = Vector2(1261, 178)
 
 [node name="Player1" parent="." instance=ExtResource("4_2cr76")]
 position = Vector2(547, 301)
@@ -89,9 +52,9 @@ player = "p2"
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(570, 331)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="GUILayer" type="CanvasLayer" parent="."]
 
-[node name="GUI" type="Control" parent="CanvasLayer"]
+[node name="GUI" type="Control" parent="GUILayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -102,7 +65,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_a5l1t")
 
-[node name="Button" type="Button" parent="CanvasLayer/GUI"]
+[node name="Button" type="Button" parent="GUILayer/GUI"]
 layout_mode = 1
 offset_left = 29.0
 offset_top = 27.0

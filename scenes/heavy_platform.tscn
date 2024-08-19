@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://db3tteaqoh33y"]
+
+[ext_resource type="Texture2D" uid="uid://cs2jr0c7j40kg" path="res://map/grass_platform.png" id="1_uuv7m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6bp1g"]
+size = Vector2(2088.1, 314)
+
+[node name="HeavyPlatform" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("1_uuv7m")
+
+[node name="Collider" type="StaticBody2D" parent="."]
+scale = Vector2(1.067, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
+texture_filter = 1
+position = Vector2(-1.87439, 12)
+shape = SubResource("RectangleShape2D_6bp1g")
+one_way_collision = true

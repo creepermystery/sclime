@@ -10,7 +10,7 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const DASH_SPEED = 600.0
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -1000.0
 
 enum State {default, dash, jump, duck, fall, dead}
 
