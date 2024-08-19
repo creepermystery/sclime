@@ -118,7 +118,8 @@ func _physics_process(delta: float) -> void:
 	# Hitting floor animation.
 	elif current_state == State.fall :
 		texture.play("slime-hit-floor")
-		fall_hitbox.disabled = true
+		hitbox_to_normal()
+		default_hitbox.disabled = true
 		ducked_hitbox.disabled = false
 		await get_tree().create_timer(0.25).timeout
 		current_state = State.default

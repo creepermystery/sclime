@@ -370,13 +370,13 @@ shape = SubResource("CapsuleShape2D_rktqs")
 disabled = true
 
 [node name="SlimeHitboxRightJump" type="CollisionShape2D" parent="."]
-position = Vector2(-0.633333, -5.63333)
+position = Vector2(-0.633333, -5.57777)
 rotation = 0.785398
 shape = SubResource("CapsuleShape2D_basc5")
 disabled = true
 
 [node name="SlimeHitboxLeftJump" type="CollisionShape2D" parent="."]
-position = Vector2(-0.7, -5.46667)
+position = Vector2(-0.722223, -5.55556)
 rotation = 2.35619
 shape = SubResource("CapsuleShape2D_basc5")
 disabled = true
