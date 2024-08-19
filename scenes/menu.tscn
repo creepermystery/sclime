@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/colorswitcher.gd" id="1_7opas"]
 [ext_resource type="Theme" uid="uid://d2qcoenct266e" path="res://GUI/main_theme.tres" id="1_e2m3s"]
 [ext_resource type="Script" path="res://scripts/mainmenu.gd" id="2_lwm3j"]
-[ext_resource type="Texture2D" uid="uid://b82bgg8rewp7p" path="res://sprites/slime_gris.png" id="4_1bq74"]
+[ext_resource type="Texture2D" uid="uid://dbef3llpoh81v" path="res://sprites/slime_gris.png" id="4_1bq74"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
