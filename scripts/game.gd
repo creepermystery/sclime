@@ -8,6 +8,14 @@ signal quit_game()
 @onready var p1: CharacterBody2D = get_node("Player1")
 @onready var p2: CharacterBody2D = get_node("Player2")
 
+var coeurs = [preload("res://GUI/coeur_1.png"), preload("res://GUI/coeur_2.png"), preload("res://GUI/coeur_3.png")]
+
+var hearts1: int = 3
+var hearts2: int = 3
+
+func _ready() -> void:
+	hearts1 = 3
+	hearts2 = 3
 
 func quit():
 	quit_game.emit()
@@ -15,15 +23,33 @@ func quit():
 func set_colors(color1, color2):
 	get_node("Player1").set_color(color1)
 	get_node("Player2").set_color(color2)
+	get_node("GUILayer/Player1/Sprite").self_modulate = color1
+	get_node("GUILayer/Player2/Sprite").self_modulate = color2
 
 func _process(_delta: float) -> void:
 	
 	# camera 
-	camera.position = 0.9*camera.position + 0.1*(p1.position + p2.position)/2 
-	var ratio = min( get_viewport_rect().size.x / abs(p1.position.x - p2.position.x) / zoom, \
-	 get_viewport_rect().size.y / abs(p1.position.y - p2.position.y) / zoom, 7)
-	camera.zoom = Vector2.ONE * (0.2*camera.zoom.x + ratio*0.8)
+	camera.position = 0.95*camera.position + 0.05*(p1.position + p2.position)/2 
+	var ratio = min(min( get_viewport_rect().size.x / abs(p1.position.x - p2.position.x) / zoom, \
+	 get_viewport_rect().size.y / abs(p1.position.y - p2.position.y) / zoom), 0.5)
+	camera.zoom = Vector2.ONE * (0.5*camera.zoom.x + ratio*0.5)
 
+func update_player_size(size: float, player: String):
+	get_node("GUILayer/Player" + player + "/Size").text = str(floor((size - 4.0)/96*100)) + "%"
 
-func _blast_zone_entered(_body: Node2D) -> void:
-	quit()
+func _blast_zone_entered(body: Node2D) -> void:
+	if body.player:
+		if body.player == "1":
+			hearts1 -= 1
+			if hearts1 == 0:
+				quit()
+				return
+			get_node("GUILayer/Player1/Health").texture = coeurs[hearts1 - 1]
+			body.respawn()
+		else:
+			hearts2 -= 1
+			if hearts2 == 0:
+				quit()
+				return
+			get_node("GUILayer/Player2/Health").texture = coeurs[hearts2 - 1]
+			body.respawn()
