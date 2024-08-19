@@ -10,3 +10,9 @@ func launch_game():
 
 func quit():
 	get_tree().quit(0)
+
+func help():
+	get_node("HelpMenu").visible = not get_node("HelpMenu").visible
+
+func close_help():
+	get_node("HelpMenu").visible = false

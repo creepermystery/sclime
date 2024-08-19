@@ -1,9 +1,9 @@
 [gd_scene load_steps=18 format=3 uid="uid://8goy43y2udku"]
 
 [ext_resource type="Script" path="res://scripts/slime_movement.gd" id="1_g2pts"]
-[ext_resource type="Texture2D" uid="uid://b82bgg8rewp7p" path="res://sprites/slime_gris.png" id="2_cmiec"]
-[ext_resource type="Texture2D" uid="uid://cxbmkq4l1c3x" path="res://sprites/slime_gris_dash_Sheet.png" id="3_fhh6g"]
-[ext_resource type="Texture2D" uid="uid://crwe57llykuyk" path="res://sprites/Slime_idle_gray_Sheet.png" id="3_g7fry"]
+[ext_resource type="Texture2D" uid="uid://bvhv7ingv12pu" path="res://sprites/slime_gris.png" id="2_cmiec"]
+[ext_resource type="Texture2D" uid="uid://hlrnuxt1uk0l" path="res://sprites/slime_gris_dash_Sheet.png" id="3_fhh6g"]
+[ext_resource type="Texture2D" uid="uid://ccldbotfet45e" path="res://sprites/Slime_idle_gray_Sheet.png" id="3_g7fry"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7t57o"]
 radius = 8.0
