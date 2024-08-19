@@ -38,7 +38,7 @@ func update_player_size(size: float, player: String):
 	get_node("GUILayer/Player" + player + "/Size").text = str(floor((size - 4.0)/96*100)) + "%"
 
 func _blast_zone_entered(body: Node2D) -> void:
-	if body.player:
+	if "player" in body:
 		if body.player == "1":
 			hearts1 -= 1
 			if hearts1 == 0:

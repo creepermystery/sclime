@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://db7srs5qb4qwl"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_5whb1"]
-[ext_resource type="PackedScene" uid="uid://b3ffvuopvyt" path="res://scenes/heavy_platform.tscn" id="2_5rxeg"]
+[ext_resource type="PackedScene" uid="uid://db3tteaqoh33y" path="res://scenes/heavy_platform.tscn" id="2_5rxeg"]
 [ext_resource type="Theme" uid="uid://d2qcoenct266e" path="res://GUI/main_theme.tres" id="2_a5l1t"]
 [ext_resource type="Texture2D" uid="uid://dqa87i6hdf8xa" path="res://sprites/fond.png" id="2_xysk8"]
 [ext_resource type="PackedScene" uid="uid://dlwr1jjubasjo" path="res://scenes/med_platform.tscn" id="3_j36vb"]
@@ -23,8 +23,7 @@ distance = -2471.0
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_845hv"]
 distance = -607.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_63f1r"]
-size = Vector2(11.7711, 10.632)
+[sub_resource type="CircleShape2D" id="CircleShape2D_w38o2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6s8qs"]
 atlas = ExtResource("10_kja4u")
@@ -268,24 +267,17 @@ theme = ExtResource("2_a5l1t")
 text = "0%"
 
 [node name="SlimeBit" type="RigidBody2D" parent="."]
-position = Vector2(551, -428)
+position = Vector2(419, -476)
 collision_layer = 16
 collision_mask = 14
-lock_rotation = true
 script = ExtResource("10_tdmrl")
 
 [node name="Hitbox" type="CollisionShape2D" parent="SlimeBit"]
-position = Vector2(-2.48764, 63.8921)
-scale = Vector2(5, 5)
-shape = SubResource("RectangleShape2D_63f1r")
+shape = SubResource("CircleShape2D_w38o2")
 
 [node name="Texture" type="AnimatedSprite2D" parent="SlimeBit"]
-texture_filter = 1
-position = Vector2(-1.99999, 64)
-scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_7oaf4")
-frame_progress = 0.00767246
-offset = Vector2(-0.615385, 1.30769)
+animation = &"touch-ground"
 
 [connection signal="change_size" from="Player1" to="." method="update_player_size" binds= ["1"]]
 [connection signal="change_size" from="Player2" to="." method="update_player_size" binds= ["2"]]
