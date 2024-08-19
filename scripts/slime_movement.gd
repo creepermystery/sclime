@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var player: String
 
 @onready var texture: AnimatedSprite2D = %"SlimeTexture"
+@onready var aura: Sprite2D = get_node("Aura")
 
 @onready var default_hitbox: CollisionShape2D = get_node("SlimeHitboxDefault")
 @onready var ducked_hitbox: CollisionShape2D = get_node("SlimeHitboxDucked")
@@ -17,12 +18,23 @@ enum State {default, dash, jump, duck, fall, dead}
 
 var current_state: State = State.default
 
-@export var size: float = 50:
+@export var size: float = 60:
 	get:
 		return size
 	set(value): 
 		size = clamp(value, 5, 100)
 		scale =  Vector2.ONE * value * 0.3
+		if not aura: 
+			return
+		if size > 50:
+			aura.self_modulate = Color.TRANSPARENT
+			collision_mask = 3
+		elif size > 17:
+			aura.self_modulate = Color(255, 255, 0, 0.3)
+			collision_mask = 7
+		else :
+			aura.self_modulate = Color(255, 255, 0, 0.8)
+			collision_mask = 15
 
 func set_color(color: Color):
 	texture.self_modulate = color
@@ -58,8 +70,8 @@ func _physics_process(delta: float) -> void:
 
 	# Dash physics.
 	if current_state == State.dash :
-		var direction = -1 if texture.flip_h else 1
-		velocity.x = DASH_SPEED * direction
+		var _direction = -1 if texture.flip_h else 1
+		velocity.x = DASH_SPEED * _direction
 		move_and_slide()
 		return
 

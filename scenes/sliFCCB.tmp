@@ -232,12 +232,11 @@ radius = 4.0
 height = 36.0
 
 [node name="Slime" type="CharacterBody2D"]
-scale = Vector2(36, 36)
-collision_mask = 3
+scale = Vector2(30, 30)
 script = ExtResource("1_g2pts")
 
 [node name="Aura" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 0, 0.313726)
+self_modulate = Color(1, 1, 0, 0)
 texture_filter = 1
 position = Vector2(-1, -1)
 scale = Vector2(2, 2)
