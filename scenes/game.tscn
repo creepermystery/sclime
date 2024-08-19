@@ -42,7 +42,7 @@ scale = Vector2(0.264375, 0.216667)
 texture = ExtResource("3_rd32i")
 
 [node name="platform2" type="StaticBody2D" parent="map"]
-position = Vector2(374, 471)
+position = Vector2(429, 415)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="map/platform2"]
 shape = SubResource("RectangleShape2D_u6mti")
