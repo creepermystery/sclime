@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://db7srs5qb4qwl"]
+[gd_scene load_steps=11 format=3 uid="uid://db7srs5qb4qwl"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_5whb1"]
-[ext_resource type="PackedScene" uid="uid://db3tteaqoh33y" path="res://scenes/heavy_platform.tscn" id="2_5rxeg"]
+[ext_resource type="PackedScene" path="res://scenes/heavy_platform.tscn" id="2_5rxeg"]
 [ext_resource type="Theme" uid="uid://d2qcoenct266e" path="res://GUI/main_theme.tres" id="2_a5l1t"]
-[ext_resource type="PackedScene" uid="uid://dlwr1jjubasjo" path="res://scenes/med_platform.tscn" id="3_j36vb"]
+[ext_resource type="PackedScene" path="res://scenes/med_platform.tscn" id="3_j36vb"]
 [ext_resource type="PackedScene" uid="uid://8goy43y2udku" path="res://scenes/slime.tscn" id="4_2cr76"]
-[ext_resource type="PackedScene" uid="uid://bhjwbdvptnel2" path="res://scenes/light_platform.tscn" id="4_84tb3"]
+[ext_resource type="PackedScene" path="res://scenes/light_platform.tscn" id="4_84tb3"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2wpff"]
 
@@ -91,5 +91,4 @@ shape = SubResource("WorldBoundaryShape2D_w0arl")
 rotation = 4.71239
 shape = SubResource("WorldBoundaryShape2D_845hv")
 
-[connection signal="pressed" from="CanvasLayer/GUI/Button" to="." method="quit"]
 [connection signal="body_entered" from="BlastZone" to="." method="_blast_zone_entered"]

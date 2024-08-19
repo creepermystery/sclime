@@ -25,6 +25,4 @@ func _process(_delta: float) -> void:
 
 
 func _blast_zone_entered(body: Node2D) -> void:
-	if body.die :
-		body.die()
 	pass # Replace with function body.
