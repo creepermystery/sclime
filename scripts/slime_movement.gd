@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 @export var player: String
 
-@onready var texture: AnimatedSprite2D = %"slime-texture"
+@onready var texture: AnimatedSprite2D = %"SlimeTexture"
 
 @onready var default_hitbox: CollisionShape2D = get_node("SlimeHitboxDefault")
 @onready var ducked_hitbox: CollisionShape2D = get_node("SlimeHitboxDucked")
