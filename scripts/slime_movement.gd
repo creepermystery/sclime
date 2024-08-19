@@ -3,11 +3,11 @@ extends CharacterBody2D
 
 @export var player: String
 
-@onready var texture: AnimatedSprite2D = %"slime-texture"
+@onready var texture: AnimatedSprite2D = %"SlimeTexture"
 
-@onready var default_hitbox: CollisionShape2D = get_node("slime-hitbox-default")
-@onready var ducked_hitbox: CollisionShape2D = get_node("slime-hitbox-ducked")
-@onready var fall_hitbox: CollisionShape2D = get_node("slime-hitbox-fall")
+@onready var default_hitbox: CollisionShape2D = get_node("SlimeHitboxDefault")
+@onready var ducked_hitbox: CollisionShape2D = get_node("SlimeHitboxDucked")
+@onready var fall_hitbox: CollisionShape2D = get_node("SlimeHitboxFall")
 
 const SPEED = 700.0
 const DASH_SPEED = 1300.0
@@ -30,7 +30,7 @@ func set_color(color: Color):
 func _ready() -> void:
 	size = size
 
-func _process(delta: float) -> void:	
+func _process(_delta: float) -> void:	
 	if Input.is_action_pressed(player + "_dash"):
 		current_state = State.dash
 		texture.play("slime-dash")
@@ -45,14 +45,14 @@ func dash_end() -> void:
 		texture.frame = 7
 
 func _physics_process(delta: float) -> void:
-	
+
 	# Dash physics.
 	if current_state == State.dash :
 		var direction = -1 if texture.flip_h else 1
 		velocity.x = DASH_SPEED * direction
 		move_and_slide()
 		return
-	
+
 	# Mid air physics.
 	if not is_on_floor():
 		if velocity.y > 0:
