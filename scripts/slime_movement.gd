@@ -23,6 +23,7 @@ extends CharacterBody2D
 @onready var splash_sound: AudioStreamPlayer = get_node("Sounds/SplashSound")
 
 signal change_size(new_size: int)
+signal damage_sound_signal()
 
 const KNOCKBACK_STRENGTH : float = 1400
 const SPEED := 700.0
@@ -42,6 +43,7 @@ var splash_sound_enabled: bool = true
 var jump_sound_enabled: bool = true
 var move_sound_enabled: bool = true
 var power_up_sound_enabled: bool = true
+var damage_sound_enabled: bool = true
 
 @export var size: float = 60:
 	get:
@@ -81,6 +83,9 @@ func enable_splash_sound() -> void:
 	
 func enable_move_sound() -> void:
 	move_sound_enabled = true
+
+func enable_damage_sound() -> void:
+	damage_sound_enabled = true
 
 func enable_jump_sound() -> void:
 	jump_sound_enabled = true
@@ -171,6 +176,7 @@ func _physics_process(delta: float) -> void:
 		var slime = collision.get_collider()
 		if not "player" in slime:
 			break
+		damage_sound_signal.emit()
 		collisioned = true
 		knockback = collision.get_normal().x * KNOCKBACK_STRENGTH
 		velocity.y += collision.get_normal().y * KNOCKBACK_STRENGTH
@@ -375,3 +381,10 @@ func custom_move():
 	if abs(knockback) > abs(velocity.x):
 		knockback = velocity.x
 	move_and_slide()
+
+
+func _on_damage_sound_signal() -> void:
+	if damage_sound_enabled:
+		damage_sound.play()
+		damage_sound_enabled = false
+		get_tree().create_timer(0.2).timeout.connect(enable_damage_sound)

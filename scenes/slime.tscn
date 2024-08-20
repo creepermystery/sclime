@@ -706,7 +706,6 @@ texture_filter = 1
 position = Vector2(0.166667, 0)
 scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_b8xge")
-animation = &"slime-jump-start"
 offset = Vector2(-0.571428, -0.571428)
 
 [node name="SlimeHitboxDefault" type="CollisionShape2D" parent="."]
@@ -778,6 +777,7 @@ stream = ExtResource("17_0kwua")
 [node name="SplashSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("19_6ui7n")
 
+[connection signal="damage_sound_signal" from="." to="." method="_on_damage_sound_signal"]
 [connection signal="body_entered" from="HurtboxRight" to="." method="_on_hurtbox_right_body_entered"]
 [connection signal="input_event" from="HurtboxRight" to="." method="_on_hurtbox_right_input_event"]
 [connection signal="body_entered" from="HurtboxLeft" to="." method="_on_hurtbox_left_body_entered"]
