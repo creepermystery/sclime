@@ -173,7 +173,7 @@ func _physics_process(delta: float) -> void:
 		texture.play("slime-idle")
 		aura.play("aura-idle")
 		hitbox_to_normal()
-		if Input.is_action_pressed(player + "_duck"):
+		if Input.is_action_pressed(player + "_duck") and velocity.y > -0.1:
 			texture.play("slime-hit-floor")
 			texture.pause()
 			aura.play("aura-hit-floor")
@@ -181,6 +181,16 @@ func _physics_process(delta: float) -> void:
 			default_hitbox.disabled = true
 			ducked_hitbox.disabled = false
 			current_state = State.duck
+		if velocity.y < JUMP_VELOCITY/2:
+			current_state = State.jump
+			get_tree().create_timer(0.3).timeout.connect(normal_hitbox_to_jump)
+			texture.play("slime-jump-start")
+			aura.play("aura-jump-start")
+			texture.frame = 1
+			aura.frame = 1
+			get_tree().create_timer(0.6).timeout.connect(hitbox_to_normal)
+			move_and_slide()
+			return
 
 	# Handle jump.
 	var direction_jump := Input.get_axis(player + "_left", player + "_right")
