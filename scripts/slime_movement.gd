@@ -15,15 +15,19 @@ extends CharacterBody2D
 
 signal change_size(new_size: int)
 
-const SPEED = 700.0
-const DASH_SPEED = 1300.0
-const JUMP_VELOCITY = -1000.0
+const KNOCKBACK_STRENGTH : float = 1400
+const SPEED := 700.0
+const DASH_SPEED := 2000.0
+const JUMP_VELOCITY := -1000.0
 
 enum State {default, dash, jump, duck, fall, attack}
 
 var current_state: State = State.default
 var xspawn: float
 
+var can_dash := true
+var collisioned := false
+var knockback : float = 0
 var nofall: bool = false
 
 @export var size: float = 60:
@@ -65,6 +69,7 @@ func end_head_bump():
 func respawn():
 	position = Vector2(xspawn, -1000)
 	size = 60
+	knockback = 0
 	velocity = Vector2.ZERO
 
 func set_color(color: Color):
@@ -94,7 +99,7 @@ func normal_hitbox_to_left_jump() -> void:
 	left_jump_hitbox.disabled = false
 
 func _process(_delta: float) -> void:	
-	if Input.is_action_pressed(player + "_dash"):
+	if Input.is_action_pressed(player + "_dash") and can_dash:
 		current_state = State.dash
 		texture.play("slime-dash")
 		aura.play("aura-dash")
@@ -103,6 +108,7 @@ func _process(_delta: float) -> void:
 		left_jump_hitbox.disabled = true
 		right_jump_hitbox.disabled = true
 		ducked_hitbox.disabled = true
+		can_dash = false
 		get_tree().create_timer(0.375).timeout.connect(dash_end)
 
 func dash_end() -> void:
@@ -123,12 +129,34 @@ func dash_end() -> void:
 		ducked_hitbox.disabled = true
 
 func _physics_process(delta: float) -> void:
-
+	
+	# knockback
+	for i in range(get_slide_collision_count()):	
+		if collisioned:
+			break
+		var collision: KinematicCollision2D = get_slide_collision(i)
+		var slime = collision.get_collider()
+		if not "player" in slime:
+			break
+		collisioned = true
+		knockback = collision.get_normal().x * KNOCKBACK_STRENGTH
+		velocity.y += collision.get_normal().y * KNOCKBACK_STRENGTH
+		get_tree().create_timer(0.5).timeout.connect(reset_collision)
+	
+	# reset dash
+	if not can_dash and is_on_floor():
+		can_dash = true	
+	
+	# knockback damp
+	knockback= lerpf(knockback, 0, min(delta * 2, 1))
+	if abs(knockback) < SPEED / 5:
+		knockback = 0
+	
 	# Dash physics.
 	if current_state == State.dash :
 		var _direction = -1 if texture.flip_h else 1
 		velocity.x = DASH_SPEED * _direction
-		move_and_slide()
+		custom_move()
 		return
 	if current_state == State.attack: 
 		return
@@ -189,7 +217,7 @@ func _physics_process(delta: float) -> void:
 			texture.frame = 1
 			aura.frame = 1
 			get_tree().create_timer(0.6).timeout.connect(hitbox_to_normal)
-			move_and_slide()
+			custom_move()
 			return
 
 	# Handle jump.
@@ -202,7 +230,7 @@ func _physics_process(delta: float) -> void:
 			aura.play("aura-jump-start")
 			velocity.y = JUMP_VELOCITY
 			get_tree().create_timer(0.6).timeout.connect(hitbox_to_normal)
-			move_and_slide()
+			custom_move()
 			return
 		# Jump to the right
 		elif direction_jump > 0 and Input.is_action_just_pressed(player + "_jump") and is_on_floor():
@@ -212,7 +240,7 @@ func _physics_process(delta: float) -> void:
 			aura.play("aura-side-jump-start")
 			velocity.y = JUMP_VELOCITY
 			get_tree().create_timer(0.6).timeout.connect(hitbox_to_normal)
-			move_and_slide()
+			custom_move()
 			return
 		# Jump to the left
 		elif direction_jump < 0 and Input.is_action_just_pressed(player + "_jump") and is_on_floor():
@@ -222,7 +250,7 @@ func _physics_process(delta: float) -> void:
 			aura.play("aura-side-jump-start")
 			velocity.y = JUMP_VELOCITY
 			get_tree().create_timer(0.6).timeout.connect(hitbox_to_normal)
-			move_and_slide()
+			custom_move()
 			return
 
 	# Handle duck.
@@ -234,7 +262,7 @@ func _physics_process(delta: float) -> void:
 		default_hitbox.disabled = true
 		ducked_hitbox.disabled = false
 		current_state = State.duck
-		move_and_slide()
+		custom_move()
 		return
 	elif Input.is_action_just_released(player + "_duck") and current_state == State.duck and is_on_floor() :
 		texture.play("slime-hit-floor")
@@ -280,14 +308,14 @@ func _physics_process(delta: float) -> void:
 	if direction == 0 and current_state == State.default and is_on_floor() :
 		texture.play("slime-idle")
 		aura.play("aura-idle")
-
-	move_and_slide()
 	
-	for i in range(get_slide_collision_count()):	
-		var collision: KinematicCollision2D = get_slide_collision(i)
-		var slime = collision.get_collider()
-		if not "player" in slime:
-			return
-		slime.velocity += collision.get_normal()
-		#wip
+	custom_move()
 		
+func reset_collision():
+	collisioned = false
+	
+func custom_move():
+	velocity.x = lerpf(velocity.x, sign(knockback) * KNOCKBACK_STRENGTH, sqrt(abs(knockback)/KNOCKBACK_STRENGTH))
+	if abs(knockback) > abs(velocity.x):
+		knockback = velocity.x
+	move_and_slide()
