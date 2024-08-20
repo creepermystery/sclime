@@ -15,22 +15,22 @@ Label/styles/normal = null
 
 [node name="EndScreen" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1112.0
+offset_bottom = -608.0
 script = ExtResource("1_skuvm")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -2.10095
-offset_top = -8.0
-offset_right = 1116.1
-offset_bottom = 610.0
+anchors_preset = -1
+anchor_right = 28.968
+anchor_bottom = 16.325
+offset_left = -3.0
+offset_right = 0.00219727
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(577, 348)
 texture = ExtResource("1_x6lij")
 expand_mode = 3
 
@@ -40,9 +40,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -20.0
-offset_right = 40.0
-offset_bottom = 20.0
+offset_left = -74.0
+offset_top = -30.0
+offset_right = -34.0
+offset_bottom = 10.0
 grow_vertical = 2
 
 [node name="Tag" type="RichTextLabel" parent="Player1"]
@@ -71,9 +72,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -20.0
-offset_bottom = 20.0
+offset_left = -114.0
+offset_top = -30.0
+offset_right = -74.0
+offset_bottom = 10.0
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -97,10 +99,14 @@ texture = ExtResource("3_b8f77")
 flip_h = true
 
 [node name="QuitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 29.047
+anchor_bottom = 16.098
 offset_left = 20.0
 offset_top = 22.0
-offset_right = 103.0
-offset_bottom = 84.0
+offset_right = -1058.88
+offset_bottom = -559.92
 text = "Quit
 "
 
