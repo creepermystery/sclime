@@ -67,7 +67,7 @@ func _blast_zone_entered(body: Node2D) -> void:
 		else:
 			hearts2 -= 1
 			if hearts2 == 0:
-				victory.emit(2, body.texture.self_modulate)
+				victory.emit(1, body.texture.self_modulate)
 				return
 			get_node("GUILayer/Player2/Health").texture = coeurs[hearts2 - 1]
 			body.respawn()
