@@ -1,0 +1,115 @@
+[gd_scene load_steps=7 format=3 uid="uid://ckl7bujqswajg"]
+
+[ext_resource type="Script" path="res://scenes/end_screen.gd" id="1_skuvm"]
+[ext_resource type="Texture2D" uid="uid://q0mswombel16" path="res://map/main_menu.png" id="1_x6lij"]
+[ext_resource type="FontFile" uid="uid://22ea4f2g5r50" path="res://font/future-timesplitters/Future TimeSplitters.otf" id="2_3liyj"]
+[ext_resource type="Texture2D" uid="uid://dbef3llpoh81v" path="res://sprites/slime_gris.png" id="3_b8f77"]
+[ext_resource type="AudioStream" uid="uid://dofeqqaw5iq8t" path="res://sound/Win_sound.mp3" id="5_w4emi"]
+
+[sub_resource type="Theme" id="Theme_2bhq0"]
+Label/colors/font_color = Color(0.796796, 0.971622, 0.958018, 1)
+Label/colors/font_outline_color = Color(0.242304, 0.6501, 0.630224, 1)
+Label/font_sizes/font_size = 50
+Label/fonts/font = ExtResource("2_3liyj")
+Label/styles/normal = null
+
+[node name="EndScreen" type="Control"]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1112.0
+offset_bottom = -608.0
+script = ExtResource("1_skuvm")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 28.968
+anchor_bottom = 16.325
+offset_left = -3.0
+offset_right = 0.00219727
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(577, 348)
+texture = ExtResource("1_x6lij")
+expand_mode = 3
+
+[node name="Player1" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -30.0
+offset_right = -34.0
+offset_bottom = 10.0
+grow_vertical = 2
+
+[node name="Tag" type="RichTextLabel" parent="Player1"]
+layout_mode = 0
+offset_left = 603.0
+offset_top = 505.0
+offset_right = 772.0
+offset_bottom = 573.0
+theme = SubResource("Theme_2bhq0")
+text = "Player 1"
+
+[node name="Sprite" type="TextureRect" parent="Player1"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 492.0
+offset_top = 455.0
+offset_right = 744.0
+offset_bottom = 688.0
+texture = ExtResource("3_b8f77")
+
+[node name="Player2" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -114.0
+offset_top = -30.0
+offset_right = -74.0
+offset_bottom = 10.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Tag" type="RichTextLabel" parent="Player2"]
+layout_mode = 0
+offset_left = 596.0
+offset_top = 505.0
+offset_right = 765.0
+offset_bottom = 573.0
+text = "Player 2"
+
+[node name="Sprite" type="TextureRect" parent="Player2"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 498.0
+offset_top = 455.0
+offset_right = 750.0
+offset_bottom = 688.0
+rotation = 0.00384997
+texture = ExtResource("3_b8f77")
+flip_h = true
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 29.047
+anchor_bottom = 16.098
+offset_left = 20.0
+offset_top = 22.0
+offset_right = -1058.88
+offset_bottom = -559.92
+text = "Quit
+"
+
+[node name="EndMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_w4emi")
+autoplay = true
