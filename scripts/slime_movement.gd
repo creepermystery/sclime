@@ -364,6 +364,9 @@ func _physics_process(delta: float) -> void:
 		texture.play("slime-idle")
 		aura.play("aura-idle")
 	elif direction != 0 and current_state == State.default and is_on_floor() :
+		if texture.animation != "slime-move":
+			texture.play("slime-move")
+			aura.play("aura-move")
 		if move_sound_enabled:
 			move_sound.play()
 			move_sound_enabled = false
