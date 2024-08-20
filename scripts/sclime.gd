@@ -2,6 +2,7 @@ extends Node
 
 var menu: Node
 var game = preload("res://scenes/game.tscn")
+var end_screen_resource = preload("res://scenes/end_screen.tscn")
 
 func launch_game(color1: Color, color2: Color):
 	menu = get_node("Menu")
@@ -21,11 +22,12 @@ func deferred_quit():
 	add_child(menu)
 
 func victory_screen(player: int, color: Color) -> void:
-	var end_screen_resource = preload("res://scenes/end_screen.tscn")
-	remove_game.call_deferred()
+	remove_game.bind(player, color).call_deferred()
+	
+
+func remove_game(player: int, color: Color) -> void :
+	remove_child(get_child(0))
 	var end_screen = end_screen_resource.instantiate()
 	add_child(end_screen)
-	get_child(1).player_appear(player, color)
-
-func remove_game() -> void :
-	remove_child(get_child(0))
+	end_screen.player_appear(player, color)
+	end_screen.quit.connect(quit_game)

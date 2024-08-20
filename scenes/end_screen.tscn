@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://ckl7bujqswajg"]
 
-[ext_resource type="Script" path="res://scenes/end_screen.gd" id="1_skuvm"]
+[ext_resource type="Script" path="res://scripts/end_screen.gd" id="1_skuvm"]
 [ext_resource type="Texture2D" uid="uid://q0mswombel16" path="res://map/main_menu.png" id="1_x6lij"]
 [ext_resource type="FontFile" uid="uid://22ea4f2g5r50" path="res://font/future-timesplitters/Future TimeSplitters.otf" id="2_3liyj"]
 [ext_resource type="Texture2D" uid="uid://dbef3llpoh81v" path="res://sprites/slime_gris.png" id="3_b8f77"]
@@ -51,13 +51,16 @@ expand_mode = 3
 [node name="Player1" type="Control" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 2.0
-offset_top = -321.0
-offset_right = 42.0
-offset_bottom = -281.0
+offset_left = -577.0
+offset_top = -364.0
+offset_right = -537.0
+offset_bottom = -324.0
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Tag" type="RichTextLabel" parent="Player1"]
@@ -93,13 +96,17 @@ texture = ExtResource("3_b8f77")
 [node name="Player2" type="Control" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -576.0
-offset_right = -536.0
-offset_bottom = 40.0
+anchor_bottom = 0.5
+offset_left = -577.0
+offset_top = -316.0
+offset_right = -537.0
+offset_bottom = -276.0
 grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Sprite" type="TextureRect" parent="Player2"]
 texture_filter = 1
@@ -146,3 +153,5 @@ flat = true
 [node name="EndMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_w4emi")
 autoplay = true
+
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

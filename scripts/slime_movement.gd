@@ -25,10 +25,10 @@ extends CharacterBody2D
 signal change_size(new_size: int)
 signal damage_sound_signal()
 
-const KNOCKBACK_STRENGTH : float = 1400
-const SPEED := 700.0
-const DASH_SPEED := 2000.0
-const JUMP_VELOCITY := -1000.0
+const KNOCKBACK_STRENGTH : float = 2400
+const SPEED := 550.0
+const DASH_SPEED := 3000.0
+const JUMP_VELOCITY := -800.0
 
 enum State {default, dash, jump, duck, fall, attack}
 
@@ -195,10 +195,11 @@ func end_hurt():
 		if is_frame_hurt:
 			clignote_hurt()
 
-func get_collisionned(my_strength, other_strength, normal):
+func get_collisionned(my_strength, other_strength, normal, _stomped):
 	if collisioned or is_hurt:
 		return
 	collisioned = true
+	stomped = _stomped
 	get_tree().create_timer(0.5).timeout.connect(reset_collision)
 	knockback = lerpf(normal.x * KNOCKBACK_STRENGTH, 0, (size-5)/95) 
 	var yknockback = lerpf(normal.y * KNOCKBACK_STRENGTH, 0, (size-5)/95)
@@ -234,22 +235,26 @@ func _physics_process(delta: float) -> void:
 		
 		var normal := collision.get_normal()
 		var angle := normal.angle()
-		
+		var other_stomped = false
 		var my_strength = old_velocity.length()
 		var other_strength = slime.old_velocity.length()
 		if -PI/4 > angle and -3*PI/4 < angle:
+			stomped = false
+			other_stomped = true
 			if size > slime.size:
 				my_strength *= 1 + (size - slime.size ) / 50
 		elif (-PI/4 < angle and PI/4 > angle) or (3*PI/4 < angle or -3*PI/4 > angle):
+			stomped = false
 			if size < slime.size:
 				my_strength *= 1 + (slime.size - size) / 50
 			else:
 				other_strength *= 1 + (size - slime.size ) / 50
 		else: 
+			stomped = true
 			if slime.size > size:
 				other_strength *= 1 + (slime.size - size ) / 50
 			
-		slime.get_collisionned(other_strength, my_strength, -normal)
+		slime.get_collisionned(other_strength, my_strength, -normal, other_stomped)
 
 		# knockback
 		knockback = lerpf(normal.x * KNOCKBACK_STRENGTH, 0, (size-5)/95) 
@@ -499,7 +504,7 @@ func on_hurtbox_entered(body):
 	var norm = body.velocity.normalized()
 	body.velocity.y += -norm.y * KNOCKBACK_STRENGTH
 	body.knockback = -norm.x * KNOCKBACK_STRENGTH
-	body.size -= 5
+	body.size -= 10
 
 func _on_damage_sound_signal() -> void:
 	if damage_sound_enabled:

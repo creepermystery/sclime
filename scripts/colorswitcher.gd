@@ -1,6 +1,6 @@
 extends Control
 
-var colors = [Color.LIGHT_CORAL, Color.LIGHT_GREEN, Color.SKY_BLUE, Color.YELLOW, Color.DARK_ORANGE]
+var colors = [Color.REBECCA_PURPLE, Color.LIGHT_GREEN, Color.LIGHT_CORAL, Color.SKY_BLUE, Color.YELLOW, Color.DARK_ORANGE, Color.TEAL, Color.CYAN, Color.MAGENTA, Color.WHITE, Color.DIM_GRAY, Color.DARK_SALMON]
 
 @onready var color: int:
 	get:

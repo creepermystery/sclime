@@ -1,5 +1,7 @@
 extends Control
 
+signal quit()
+
 func player_appear(player: int, color: Color) -> void :
 	var player_node: Control
 	var player_sprite: TextureRect
@@ -12,3 +14,7 @@ func player_appear(player: int, color: Color) -> void :
 	player_sprite.self_modulate = color
 	player_node.visible = true
 	
+
+
+func _on_quit_button_pressed() -> void:
+	quit.emit()
