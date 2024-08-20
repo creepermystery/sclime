@@ -89,19 +89,19 @@ region = Rect2(480, 0, 40, 40)
 atlas = ExtResource("2_8due3")
 region = Rect2(520, 0, 40, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_84voq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_eclsm"]
 atlas = ExtResource("2_0i6uv")
 region = Rect2(0, 0, 40, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o7ruo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jumrq"]
 atlas = ExtResource("2_0i6uv")
 region = Rect2(40, 0, 40, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_euqi1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgtlu"]
 atlas = ExtResource("2_0i6uv")
 region = Rect2(80, 0, 40, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j734j"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_iseij"]
 atlas = ExtResource("2_0i6uv")
 region = Rect2(120, 0, 40, 40)
 
@@ -255,16 +255,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_84voq")
+"texture": SubResource("AtlasTexture_eclsm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_o7ruo")
+"texture": SubResource("AtlasTexture_jumrq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_euqi1")
+"texture": SubResource("AtlasTexture_dgtlu")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j734j")
+"texture": SubResource("AtlasTexture_iseij")
 }],
 "loop": true,
 "name": &"aura-idle",
@@ -692,6 +692,7 @@ position = Vector2(1.75, 0)
 scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_detlh")
 animation = &"aura-idle"
+frame = 2
 offset = Vector2(-1.5873, -0.492063)
 
 [node name="SlimeTexture" type="AnimatedSprite2D" parent="."]
@@ -701,6 +702,7 @@ position = Vector2(0.166667, 0)
 scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_b8xge")
 animation = &"slime-idle"
+frame = 2
 offset = Vector2(-0.571428, -0.571428)
 
 [node name="SlimeHitboxDefault" type="CollisionShape2D" parent="."]
