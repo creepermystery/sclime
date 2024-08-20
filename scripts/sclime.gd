@@ -22,7 +22,10 @@ func deferred_quit():
 
 func victory_screen(player: int, color: Color) -> void:
 	var end_screen_resource = preload("res://scenes/end_screen.tscn")
-	remove_child(get_child(0))
+	remove_game.call_deferred()
 	var end_screen = end_screen_resource.instantiate()
 	add_child(end_screen)
-	get_child(0).player_appear(player, color)
+	get_child(1).player_appear(player, color)
+
+func remove_game() -> void :
+	remove_child(get_child(0))
