@@ -871,8 +871,8 @@ stream = ExtResource("17_0kwua")
 stream = ExtResource("19_6ui7n")
 
 [connection signal="damage_sound_signal" from="." to="." method="_on_damage_sound_signal"]
-[connection signal="body_entered" from="HurtboxRight" to="." method="on_hurtbox_entered"]
 [connection signal="body_entered" from="HurtboxRight" to="." method="_on_hurtbox_right_body_entered"]
+[connection signal="body_entered" from="HurtboxRight" to="." method="on_hurtbox_entered"]
 [connection signal="input_event" from="HurtboxRight" to="." method="_on_hurtbox_right_input_event"]
 [connection signal="body_entered" from="HurtboxLeft" to="." method="on_hurtbox_entered"]
 [connection signal="timeout" from="Hurt" to="." method="clignote_hurt"]

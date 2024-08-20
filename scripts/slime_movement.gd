@@ -144,7 +144,7 @@ func normal_hitbox_to_left_jump() -> void:
 	left_jump_hitbox.disabled = false
 
 func _process(_delta: float) -> void:	
-	if Input.is_action_pressed(player + "_dash") and can_dash:
+	if Input.is_action_pressed(player + "_dash") and can_dash and not current_state == State.attack:
 		current_state = State.dash
 		texture.play("slime-dash")
 		aura.play("aura-dash")
