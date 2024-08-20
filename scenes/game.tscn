@@ -42,10 +42,6 @@ expand_mode = 2
 [node name="HeavyPlatform" parent="map" instance=ExtResource("2_5rxeg")]
 position = Vector2(429, 1155)
 
-[node name="MedPlatform2" parent="map" instance=ExtResource("3_j36vb")]
-position = Vector2(2649, 429)
-rotation = -6.28319
-
 [node name="MedPlatform" parent="map" instance=ExtResource("3_j36vb")]
 position = Vector2(-1123, 409)
 
@@ -57,6 +53,10 @@ position = Vector2(616, 7)
 
 [node name="LightPlatform3" parent="map" instance=ExtResource("4_84tb3")]
 position = Vector2(1427, 189)
+
+[node name="MedPlatform2" parent="map" instance=ExtResource("3_j36vb")]
+position = Vector2(2345, 409)
+flip = true
 
 [node name="Player1" parent="." instance=ExtResource("4_2cr76")]
 position = Vector2(-432, 650)

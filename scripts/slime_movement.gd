@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var player: String
 
 @onready var texture: AnimatedSprite2D = %"SlimeTexture"
-@onready var aura: Sprite2D = get_node("Aura")
+@onready var aura: AnimatedSprite2D = get_node("Aura")
 
 @onready var default_hitbox: CollisionShape2D = get_node("SlimeHitboxDefault")
 @onready var ducked_hitbox: CollisionShape2D = get_node("SlimeHitboxDucked")
@@ -54,6 +54,14 @@ var nofall: bool = false
 func stop_nofall():
 	nofall = false
 
+func end_head_bump():
+	current_state = State.default
+	right_attack_hurtbox.disabled = true
+	left_attack_hurtbox.disabled = true
+	hitbox_to_normal()
+	texture.play("slime-idle")
+	aura.play("aura-idle")
+
 func respawn():
 	position = Vector2(xspawn, -1000)
 	size = 60
@@ -89,6 +97,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_pressed(player + "_dash"):
 		current_state = State.dash
 		texture.play("slime-dash")
+		aura.play("aura-dash")
 		default_hitbox.disabled = false
 		fall_hitbox.disabled = true
 		left_jump_hitbox.disabled = true
@@ -100,12 +109,14 @@ func dash_end() -> void:
 	if is_on_floor():
 		current_state = State.default
 		texture.play("slime-idle")
+		aura.play("aura-idle")
 		default_hitbox.disabled = false
 		fall_hitbox.disabled = true
 		ducked_hitbox.disabled = true
 	else:
 		current_state = State.default
 		texture.play("slime-jump-start")
+		aura.play("aura-jump-start")
 		texture.frame = 7
 		default_hitbox.disabled = true
 		fall_hitbox.disabled = false
@@ -119,6 +130,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = DASH_SPEED * _direction
 		move_and_slide()
 		return
+	if current_state == State.attack: 
+		return
 
 	# Mid air physics.
 	if not is_on_floor() and not nofall:
@@ -126,6 +139,7 @@ func _physics_process(delta: float) -> void:
 		if velocity.y > 0 and direction_fall == 0:
 			current_state = State.fall
 			texture.play("slime-fall")
+			aura.play("aura-fall")
 			default_hitbox.disabled = true
 			fall_hitbox.disabled = false
 			left_jump_hitbox.disabled = true
@@ -133,6 +147,7 @@ func _physics_process(delta: float) -> void:
 		elif velocity.y > 0 and direction_fall > 0:
 			current_state = State.fall
 			texture.play("slime-side-jump-fall")
+			aura.play("aura-side-jump-fall")
 			default_hitbox.disabled = true
 			fall_hitbox.disabled = true
 			left_jump_hitbox.disabled = false
@@ -140,6 +155,7 @@ func _physics_process(delta: float) -> void:
 		elif velocity.y > 0 and direction_fall < 0:
 			current_state = State.fall
 			texture.play("slime-side-jump-fall")
+			aura.play("aura-side-jump-fall")
 			default_hitbox.disabled = true
 			fall_hitbox.disabled = true
 			left_jump_hitbox.disabled = true
@@ -148,19 +164,33 @@ func _physics_process(delta: float) -> void:
 	# Hitting floor animation.
 	elif current_state == State.fall and not nofall:
 		texture.play("slime-hit-floor")
+		aura.play("aura-hit-floor")
 		hitbox_to_normal()
 		default_hitbox.disabled = true
 		ducked_hitbox.disabled = false
 		await get_tree().create_timer(0.25).timeout
 		current_state = State.default
 		texture.play("slime-idle")
+		aura.play("aura-idle")
 		hitbox_to_normal()
-		if Input.is_action_pressed(player + "_duck"):
+		if Input.is_action_pressed(player + "_duck") and velocity.y > -0.1:
 			texture.play("slime-hit-floor")
 			texture.pause()
+			aura.play("aura-hit-floor")
+			aura.pause()
 			default_hitbox.disabled = true
 			ducked_hitbox.disabled = false
 			current_state = State.duck
+		if velocity.y < JUMP_VELOCITY/2:
+			current_state = State.jump
+			get_tree().create_timer(0.3).timeout.connect(normal_hitbox_to_jump)
+			texture.play("slime-jump-start")
+			aura.play("aura-jump-start")
+			texture.frame = 1
+			aura.frame = 1
+			get_tree().create_timer(0.6).timeout.connect(hitbox_to_normal)
+			move_and_slide()
+			return
 
 	# Handle jump.
 	var direction_jump := Input.get_axis(player + "_left", player + "_right")
@@ -169,6 +199,7 @@ func _physics_process(delta: float) -> void:
 			current_state = State.jump
 			get_tree().create_timer(0.3).timeout.connect(normal_hitbox_to_jump)
 			texture.play("slime-jump-start")
+			aura.play("aura-jump-start")
 			velocity.y = JUMP_VELOCITY
 			get_tree().create_timer(0.6).timeout.connect(hitbox_to_normal)
 			move_and_slide()
@@ -178,6 +209,7 @@ func _physics_process(delta: float) -> void:
 			current_state = State.jump
 			get_tree().create_timer(0.3).timeout.connect(normal_hitbox_to_right_jump)
 			texture.play("slime-side-jump-start")
+			aura.play("aura-side-jump-start")
 			velocity.y = JUMP_VELOCITY
 			get_tree().create_timer(0.6).timeout.connect(hitbox_to_normal)
 			move_and_slide()
@@ -187,6 +219,7 @@ func _physics_process(delta: float) -> void:
 			current_state = State.jump
 			get_tree().create_timer(0.3).timeout.connect(normal_hitbox_to_left_jump)
 			texture.play("slime-side-jump-start")
+			aura.play("aura-side-jump-start")
 			velocity.y = JUMP_VELOCITY
 			get_tree().create_timer(0.6).timeout.connect(hitbox_to_normal)
 			move_and_slide()
@@ -196,6 +229,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed(player + "_duck") and is_on_floor():
 		texture.play("slime-hit-floor")
 		texture.pause()
+		aura.play("aura-hit-floor")
+		aura.pause()
 		default_hitbox.disabled = true
 		ducked_hitbox.disabled = false
 		current_state = State.duck
@@ -203,32 +238,31 @@ func _physics_process(delta: float) -> void:
 		return
 	elif Input.is_action_just_released(player + "_duck") and current_state == State.duck and is_on_floor() :
 		texture.play("slime-hit-floor")
+		aura.play("aura-hit-floor")
 		await get_tree().create_timer(0.25).timeout
 		current_state = State.default
 		default_hitbox.disabled = false
 		ducked_hitbox.disabled = true
 		texture.play("slime-idle")
+		aura.play("aura-idle")
 	# Fastfall
 	elif Input.is_action_just_pressed(player + "_duck") and not is_on_floor():
 		velocity += get_gravity() * delta * 80
 
 	# Headbump attacks
-	if Input.is_action_just_pressed(player + "_attack"):
+	if Input.is_action_just_pressed(player + "_attack") and is_on_floor():
 		current_state = State.attack
 		texture.play("slime-headbump")
+		aura.play("aura-headbump")
 		if texture.flip_h :
 			left_attack_hurtbox.disabled = false
 		else :
 			right_attack_hurtbox.disabled = false
-		await get_tree().create_timer(1).timeout
-		right_attack_hurtbox.disabled = true
-		left_attack_hurtbox.disabled = true
-		hitbox_to_normal()
-		texture.play("slime-idle")
+		get_tree().create_timer(1).timeout.connect(end_head_bump)
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis(player + "_left", player + "_right")
-	if direction and current_state != State.duck :
+	if direction and current_state != State.duck:
 		velocity.x = direction * SPEED
 	elif direction and current_state == State.duck:
 		velocity.x = direction * SPEED / 3
@@ -239,18 +273,21 @@ func _physics_process(delta: float) -> void:
 	# Animating directions and idle
 	if direction > 0:
 		texture.flip_h = false
+		aura.flip_h = false
 	elif direction < 0:
 		texture.flip_h = true
+		aura.flip_h = true
 	if direction == 0 and current_state == State.default and is_on_floor() :
 		texture.play("slime-idle")
+		aura.play("aura-idle")
+
 	move_and_slide()
-
-# Attack knockbacks
-func _on_hurtbox_right_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
-
-func _on_hurtbox_left_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
-
-func _on_hurtbox_right_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	pass # Replace with function body.
+	
+	for i in range(get_slide_collision_count()):	
+		var collision: KinematicCollision2D = get_slide_collision(i)
+		var slime = collision.get_collider()
+		if not "player" in slime:
+			return
+		slime.velocity += collision.get_normal()
+		#wip
+		
