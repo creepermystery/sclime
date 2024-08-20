@@ -1,20 +1,21 @@
 [gd_scene load_steps=5 format=3 uid="uid://b3ffvuopvyt"]
 
-[ext_resource type="Texture2D" uid="uid://cs2jr0c7j40kg" path="res://map/grass_platform.png" id="1_uuv7m"]
+[ext_resource type="Texture2D" uid="uid://q52uf40wyr5b" path="res://map/platforme_principale.png" id="1_b3dk1"]
 [ext_resource type="Script" path="res://scripts/sol.gd" id="2_3clda"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6bp1g"]
-size = Vector2(3563.26, 547)
+size = Vector2(4544.52, 280)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_76jja"]
-size = Vector2(3708, 126)
+size = Vector2(4849, 126)
 
 [node name="HeavyPlatform" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(5, 5)
-texture = ExtResource("1_uuv7m")
+position = Vector2(102, -480)
+scale = Vector2(4.23199, 4.41383)
+texture = ExtResource("1_b3dk1")
 
 [node name="Collider" type="StaticBody2D" parent="."]
 scale = Vector2(1.067, 1)
@@ -23,7 +24,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
 texture_filter = 1
-position = Vector2(-4.29019e-05, 24.5)
+position = Vector2(144.798, -109)
 shape = SubResource("RectangleShape2D_6bp1g")
 
 [node name="Sol" type="Area2D" parent="."]
@@ -31,7 +32,7 @@ collision_layer = 16
 script = ExtResource("2_3clda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sol"]
-position = Vector2(13, -184)
+position = Vector2(154.5, -184)
 shape = SubResource("RectangleShape2D_76jja")
 
 [connection signal="body_entered" from="Sol" to="Sol" method="_on_body_entered"]
