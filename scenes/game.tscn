@@ -41,10 +41,6 @@ texture = ExtResource("2_xysk8")
 [node name="HeavyPlatform" parent="map" instance=ExtResource("2_5rxeg")]
 position = Vector2(429, 1155)
 
-[node name="MedPlatform2" parent="map" instance=ExtResource("3_j36vb")]
-position = Vector2(2649, 429)
-rotation = -6.28319
-
 [node name="MedPlatform" parent="map" instance=ExtResource("3_j36vb")]
 position = Vector2(-1123, 409)
 
@@ -57,10 +53,15 @@ position = Vector2(616, 7)
 [node name="LightPlatform3" parent="map" instance=ExtResource("4_84tb3")]
 position = Vector2(1427, 189)
 
+[node name="MedPlatform2" parent="map" instance=ExtResource("3_j36vb")]
+position = Vector2(2345, 409)
+flip = true
+
 [node name="Player1" parent="." instance=ExtResource("4_2cr76")]
 position = Vector2(-432, 650)
 scale = Vector2(1, 1)
 player = "1"
+size = 30.0
 
 [node name="Player2" parent="." instance=ExtResource("4_2cr76")]
 position = Vector2(1529, 650)
@@ -205,6 +206,8 @@ text = "0%"
 wait_time = 30.0
 autostart = true
 
+[connection signal="change_size" from="Player1" to="." method="update_player_size" binds= ["1"]]
+[connection signal="change_size" from="Player2" to="." method="update_player_size" binds= ["2"]]
 [connection signal="body_entered" from="BlastZone" to="." method="_blast_zone_entered"]
 [connection signal="pressed" from="GUILayer/GUI/Button" to="." method="quit"]
 [connection signal="timeout" from="SlimeBitsTimer" to="." method="spawn_slime_bits"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlwr1jjubasjo"]
+[gd_scene load_steps=6 format=3 uid="uid://dlwr1jjubasjo"]
 
 [ext_resource type="Texture2D" uid="uid://d0pct77k7rikr" path="res://map/arbre_platform.png" id="1_pfgag"]
+[ext_resource type="Script" path="res://scripts/med_platform.gd" id="1_xhi30"]
 [ext_resource type="Script" path="res://scripts/sol.gd" id="2_5kh0c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yqb5t"]
@@ -11,6 +12,7 @@ size = Vector2(767, 14)
 
 [node name="MedPlatform" type="Node2D"]
 position = Vector2(0, 4)
+script = ExtResource("1_xhi30")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
