@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://b3ffvuopvyt" path="res://scenes/heavy_platform.tscn" id="2_5rxeg"]
 [ext_resource type="Theme" uid="uid://d2qcoenct266e" path="res://GUI/main_theme.tres" id="2_a5l1t"]
 [ext_resource type="Texture2D" uid="uid://dqa87i6hdf8xa" path="res://map/fond.png" id="2_xysk8"]
-[ext_resource type="PackedScene" uid="uid://dlwr1jjubasjo" path="res://scenes/med_platform.tscn" id="3_j36vb"]
+[ext_resource type="PackedScene" path="res://scenes/med_platform.tscn" id="3_j36vb"]
 [ext_resource type="PackedScene" uid="uid://8goy43y2udku" path="res://scenes/slime.tscn" id="4_2cr76"]
-[ext_resource type="PackedScene" uid="uid://bhjwbdvptnel2" path="res://scenes/light_platform.tscn" id="4_84tb3"]
+[ext_resource type="PackedScene" path="res://scenes/light_platform.tscn" id="4_84tb3"]
 [ext_resource type="Texture2D" uid="uid://2m3gjnh44doe" path="res://GUI/coeur_3.png" id="8_0owou"]
 [ext_resource type="Texture2D" uid="uid://dbef3llpoh81v" path="res://sprites/slime_gris.png" id="9_63ggq"]
 
