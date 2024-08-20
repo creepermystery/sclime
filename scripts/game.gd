@@ -60,3 +60,4 @@ func _blast_zone_entered(body: Node2D) -> void:
 				return
 			get_node("GUILayer/Player2/Health").texture = coeurs[hearts2 - 1]
 			body.respawn()
+			
