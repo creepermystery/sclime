@@ -1,13 +1,35 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://d2qcoenct266e"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://d2qcoenct266e"]
 
 [ext_resource type="FontFile" uid="uid://cubl1450710xn" path="res://font/pixelfy/Pixelfy.ttf" id="1_7e56u"]
 [ext_resource type="FontFile" uid="uid://22ea4f2g5r50" path="res://font/future-timesplitters/Future TimeSplitters.otf" id="1_b867h"]
+[ext_resource type="FontFile" uid="uid://cu51e4kyfdgi" path="res://font/retro-pixel/Retro Pixel.otf" id="1_oydvt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6yref"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y3a0x"]
 
 [resource]
 default_font_size = 39
+Button/colors/font_color = Color(0.0882954, 0.577929, 0.248382, 1)
+Button/colors/font_hover_color = Color(0.596638, 0.982424, 0.601023, 1)
+Button/colors/font_outline_color = Color(6.73831e-07, 0.253408, 0.155058, 1)
+Button/constants/outline_size = 10
 Button/fonts/font = ExtResource("1_7e56u")
+Button/styles/focus = SubResource("StyleBoxEmpty_6yref")
 Label/colors/font_color = Color(0.501238, 0.984596, 0.390782, 1)
 Label/colors/font_outline_color = Color(0, 0.65028, 0.29682, 1)
 Label/colors/font_shadow_color = Color(0.746549, 0.442385, 0.0343863, 0)
+Label/constants/outline_size = 20
 Label/font_sizes/font_size = 100
 Label/fonts/font = ExtResource("1_b867h")
+RichTextLabel/colors/default_color = Color(0.436772, 0.197669, 0.999934, 1)
+RichTextLabel/colors/font_outline_color = Color(0.399849, 0.00163038, 0.648021, 1)
+RichTextLabel/constants/outline_size = 5
+RichTextLabel/fonts/normal_font = ExtResource("1_oydvt")
+TextEdit/colors/background_color = Color(0, 0, 0, 0)
+TextEdit/colors/font_color = Color(0.504026, 0.00201061, 0.74339, 1)
+TextEdit/colors/font_outline_color = Color(0.224729, 0.000611838, 0.418159, 1)
+TextEdit/constants/caret_width = 2
+TextEdit/constants/outline_size = 10
+TextEdit/fonts/font = ExtResource("1_7e56u")
+TextEdit/styles/normal = SubResource("StyleBoxEmpty_y3a0x")

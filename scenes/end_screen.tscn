@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckl7bujqswajg"]
+[gd_scene load_steps=11 format=3 uid="uid://ckl7bujqswajg"]
 
 [ext_resource type="Script" path="res://scenes/end_screen.gd" id="1_skuvm"]
 [ext_resource type="Texture2D" uid="uid://q0mswombel16" path="res://map/main_menu.png" id="1_x6lij"]
 [ext_resource type="FontFile" uid="uid://22ea4f2g5r50" path="res://font/future-timesplitters/Future TimeSplitters.otf" id="2_3liyj"]
 [ext_resource type="Texture2D" uid="uid://dbef3llpoh81v" path="res://sprites/slime_gris.png" id="3_b8f77"]
+[ext_resource type="FontFile" uid="uid://cu51e4kyfdgi" path="res://font/retro-pixel/Retro Pixel.otf" id="4_tof3i"]
 [ext_resource type="AudioStream" uid="uid://dofeqqaw5iq8t" path="res://sound/Win_sound.mp3" id="5_w4emi"]
+[ext_resource type="Theme" uid="uid://d2qcoenct266e" path="res://GUI/main_theme.tres" id="6_ao088"]
 
 [sub_resource type="Theme" id="Theme_2bhq0"]
 Label/colors/font_color = Color(0.796796, 0.971622, 0.958018, 1)
@@ -12,22 +14,34 @@ Label/colors/font_outline_color = Color(0.242304, 0.6501, 0.630224, 1)
 Label/font_sizes/font_size = 50
 Label/fonts/font = ExtResource("2_3liyj")
 Label/styles/normal = null
+RichTextLabel/colors/default_color = Color(0.733073, 0.473402, 1, 1)
+RichTextLabel/colors/font_outline_color = Color(0.311316, 0.0003373, 0.399398, 1)
+RichTextLabel/constants/outline_size = 10
+RichTextLabel/font_sizes/normal_font_size = 70
+RichTextLabel/fonts/normal_font = ExtResource("4_tof3i")
+
+[sub_resource type="InputEventKey" id="InputEventKey_x8r0j"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_ytk6p"]
+events = [SubResource("InputEventKey_x8r0j")]
 
 [node name="EndScreen" type="Control"]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1112.0
-offset_bottom = -608.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_skuvm")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 28.968
-anchor_bottom = 16.325
-offset_left = -3.0
-offset_right = 0.00219727
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(577, 348)
@@ -40,75 +54,94 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -74.0
-offset_top = -30.0
-offset_right = -34.0
-offset_bottom = 10.0
+offset_left = 2.0
+offset_top = -321.0
+offset_right = 42.0
+offset_bottom = -281.0
 grow_vertical = 2
 
 [node name="Tag" type="RichTextLabel" parent="Player1"]
-layout_mode = 0
-offset_left = 603.0
-offset_top = 505.0
-offset_right = 772.0
-offset_bottom = 573.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 16.775
+anchor_top = 8.755
+anchor_right = 16.775
+anchor_bottom = 8.755
+offset_left = -398.0
+offset_top = -82.2
+offset_right = 264.0
+offset_bottom = 6.79999
+grow_horizontal = 2
+grow_vertical = 2
 theme = SubResource("Theme_2bhq0")
-text = "Player 1"
+text = "Player 1 WINS !"
 
 [node name="Sprite" type="TextureRect" parent="Player1"]
 texture_filter = 1
-layout_mode = 0
-offset_left = 492.0
-offset_top = 455.0
-offset_right = 744.0
-offset_bottom = 688.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 15.55
+anchor_top = 8.765
+anchor_right = 15.55
+anchor_bottom = 8.765
+offset_left = -439.0
+offset_top = -169.6
+offset_right = 323.0
+offset_bottom = 521.4
 texture = ExtResource("3_b8f77")
 
 [node name="Player2" type="Control" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -114.0
-offset_top = -30.0
-offset_right = -74.0
-offset_bottom = 10.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="Tag" type="RichTextLabel" parent="Player2"]
-layout_mode = 0
-offset_left = 596.0
-offset_top = 505.0
-offset_right = 765.0
-offset_bottom = 573.0
-text = "Player 2"
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_right = -536.0
+offset_bottom = 40.0
+grow_horizontal = 2
 
 [node name="Sprite" type="TextureRect" parent="Player2"]
 texture_filter = 1
-layout_mode = 0
-offset_left = 498.0
-offset_top = 455.0
-offset_right = 750.0
-offset_bottom = 688.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -11.327
+anchor_top = 17.173
+anchor_right = -11.327
+anchor_bottom = 17.173
+offset_left = 613.08
+offset_top = -571.92
+offset_right = 1459.08
+offset_bottom = 190.08
 rotation = 0.00384997
 texture = ExtResource("3_b8f77")
 flip_h = true
 
-[node name="QuitButton" type="Button" parent="."]
+[node name="Tag" type="RichTextLabel" parent="Player2"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 29.047
-anchor_bottom = 16.098
-offset_left = 20.0
-offset_top = 22.0
-offset_right = -1058.88
-offset_bottom = -559.92
+anchor_left = -10.625
+anchor_top = 17.005
+anchor_right = -10.625
+anchor_bottom = 17.005
+offset_left = 692.0
+offset_top = -473.2
+offset_right = 1354.0
+offset_bottom = -384.2
+theme = SubResource("Theme_2bhq0")
+text = "Player 2 WINS !"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 1
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 98.0
+offset_bottom = 49.0
+theme = ExtResource("6_ao088")
+shortcut = SubResource("Shortcut_ytk6p")
 text = "Quit
 "
+flat = true
 
 [node name="EndMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_w4emi")
