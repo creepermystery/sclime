@@ -792,9 +792,8 @@ disabled = true
 debug_color = Color(1, 0.450811, 0.397295, 0.42)
 
 [node name="Hurt" type="Timer" parent="."]
-wait_time = 0.15
+wait_time = 0.25
 
-[connection signal="body_entered" from="HurtboxRight" to="." method="on_hurtbox_entered"]
+[connection signal="body_entered" from="HurtboxRight" to="." method="_on_hurtbox_right_body_entered"]
 [connection signal="input_event" from="HurtboxRight" to="." method="_on_hurtbox_right_input_event"]
-[connection signal="body_entered" from="HurtboxLeft" to="." method="on_hurtbox_entered"]
-[connection signal="timeout" from="Hurt" to="." method="clignote_hurt"]
+[connection signal="body_entered" from="HurtboxLeft" to="." method="_on_hurtbox_left_body_entered"]

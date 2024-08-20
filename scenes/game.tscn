@@ -62,11 +62,13 @@ flip = true
 position = Vector2(-432, 650)
 scale = Vector2(1, 1)
 player = "1"
+size = 10.0
 
 [node name="Player2" parent="." instance=ExtResource("4_2cr76")]
 position = Vector2(1529, 650)
 scale = Vector2(1, 1)
 player = "2"
+size = 100.0
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(570, 331)

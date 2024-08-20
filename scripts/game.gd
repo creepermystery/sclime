@@ -37,6 +37,7 @@ func _process(_delta: float) -> void:
 	
 	# camera 
 	camera.position = 0.95*camera.position + 0.05*(p1.position + p2.position)/2 
+	camera.position.y -= 40 * lerpf(0, 1, max(1500,(p1.position - p2.position).length())/1500 - 1)	
 	var ratio = min(min( get_viewport_rect().size.x / abs(p1.position.x - p2.position.x) / zoom, \
 	 get_viewport_rect().size.y / abs(p1.position.y - p2.position.y) / zoom), 0.5)
 	camera.zoom = Vector2.ONE * (0.5*camera.zoom.x + ratio*0.5)

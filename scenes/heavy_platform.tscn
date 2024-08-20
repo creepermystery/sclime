@@ -28,7 +28,8 @@ position = Vector2(144.798, -109)
 shape = SubResource("RectangleShape2D_6bp1g")
 
 [node name="Sol" type="Area2D" parent="."]
-collision_layer = 16
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("2_3clda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sol"]
