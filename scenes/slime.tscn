@@ -1,7 +1,8 @@
-[gd_scene load_steps=87 format=3 uid="uid://8goy43y2udku"]
+[gd_scene load_steps=96 format=3 uid="uid://8goy43y2udku"]
 
 [ext_resource type="Script" path="res://scripts/slime_movement.gd" id="1_g2pts"]
 [ext_resource type="Texture2D" uid="uid://ctexgukrhbr26" path="res://sprites/aura_slime_idle_Sheet.png" id="2_0i6uv"]
+[ext_resource type="Texture2D" uid="uid://p4l6ipjvvayl" path="res://sprites/aura_slime_gris_dash_Sheet.png" id="2_7dn0f"]
 [ext_resource type="Texture2D" uid="uid://d8bswbxdq8tq" path="res://sprites/aura_slime_gris_saut_idle_Sheet.png" id="2_8due3"]
 [ext_resource type="Texture2D" uid="uid://dbef3llpoh81v" path="res://sprites/slime_gris.png" id="2_cmiec"]
 [ext_resource type="Texture2D" uid="uid://ba2n6cunedf6w" path="res://sprites/aura_slime_gris_attaque_Sheet.png" id="2_lybem"]
@@ -11,6 +12,38 @@
 [ext_resource type="Texture2D" uid="uid://dryv355eaydqv" path="res://sprites/aura_slime_gris_saut_cote_Sheet.png" id="4_nsodw"]
 [ext_resource type="Texture2D" uid="uid://c6vr0v3wr30pt" path="res://sprites/slime_gris_attaque_Sheet.png" id="6_3o1u4"]
 [ext_resource type="Texture2D" uid="uid://bsyfiueoste76" path="res://sprites/slime_gris_saut_cote_Sheet.png" id="6_6njet"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88q0k"]
+atlas = ExtResource("2_7dn0f")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grlo1"]
+atlas = ExtResource("2_7dn0f")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slssa"]
+atlas = ExtResource("2_7dn0f")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tapt"]
+atlas = ExtResource("2_7dn0f")
+region = Rect2(160, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inu6h"]
+atlas = ExtResource("2_7dn0f")
+region = Rect2(200, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0y7w"]
+atlas = ExtResource("2_7dn0f")
+region = Rect2(240, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hb2m"]
+atlas = ExtResource("2_7dn0f")
+region = Rect2(280, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrvai"]
+atlas = ExtResource("2_7dn0f")
+region = Rect2(320, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b8tas"]
 atlas = ExtResource("2_8due3")
@@ -134,10 +167,43 @@ region = Rect2(280, 0, 40, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_detlh"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88q0k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grlo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slssa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tapt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tapt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tapt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tapt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_inu6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0y7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hb2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrvai")
+}],
 "loop": true,
 "name": &"aura-dash",
-"speed": 5.0
+"speed": 32.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -482,7 +548,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"slime-fall",
-"speed": 7.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -622,47 +688,55 @@ script = ExtResource("1_g2pts")
 
 [node name="Aura" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+position = Vector2(1.75, 0)
+scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_detlh")
-animation = &"aura-dash"
+animation = &"aura-idle"
+offset = Vector2(-1.5873, -0.492063)
 
 [node name="SlimeTexture" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
-position = Vector2(-1, -1)
+position = Vector2(0.166667, 0)
 scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_b8xge")
-
-animation = &"slime-fall"
-flip_h = true
+animation = &"slime-idle"
+offset = Vector2(-0.571428, -0.571428)
 
 [node name="SlimeHitboxDefault" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_7t57o")
 
 [node name="SlimeHitboxDucked" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_qnnqq")
 disabled = true
 
 [node name="SlimeHitboxFall" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -10)
 shape = SubResource("CapsuleShape2D_rktqs")
 disabled = true
 
 [node name="SlimeHitboxRightJump" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-0.633333, -5.57777)
 rotation = 0.785398
 shape = SubResource("CapsuleShape2D_basc5")
 disabled = true
 
 [node name="SlimeHitboxLeftJump" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-0.722223, -5.55556)
 rotation = 2.35619
 shape = SubResource("CapsuleShape2D_basc5")
 disabled = true
 
 [node name="HurtboxRight" type="Area2D" parent="."]
+visible = false
 
 [node name="HurtboxRightCollision" type="CollisionShape2D" parent="HurtboxRight"]
 position = Vector2(16.5556, -2.52778)
@@ -672,6 +746,7 @@ disabled = true
 debug_color = Color(1, 0.450811, 0.397295, 0.42)
 
 [node name="HurtboxLeft" type="Area2D" parent="."]
+visible = false
 
 [node name="HurtboxLeftCollision" type="CollisionShape2D" parent="HurtboxLeft"]
 position = Vector2(-18.3611, -2.22222)

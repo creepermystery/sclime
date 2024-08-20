@@ -165,8 +165,9 @@ func _physics_process(delta: float) -> void:
 		hitbox_to_normal()
 		if Input.is_action_pressed(player + "_duck"):
 			texture.play("slime-hit-floor")
-			aura.play("aura-hit-floor")
 			texture.pause()
+			aura.play("aura-hit-floor")
+			aura.pause()
 			default_hitbox.disabled = true
 			ducked_hitbox.disabled = false
 			current_state = State.duck
@@ -207,8 +208,9 @@ func _physics_process(delta: float) -> void:
 	# Handle duck.
 	if Input.is_action_just_pressed(player + "_duck") and is_on_floor():
 		texture.play("slime-hit-floor")
-		aura.play("aura-hit-floor")
 		texture.pause()
+		aura.play("aura-hit-floor")
+		aura.pause()
 		default_hitbox.disabled = true
 		ducked_hitbox.disabled = false
 		current_state = State.duck
