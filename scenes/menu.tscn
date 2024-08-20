@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvce0kamrty8l"]
+[gd_scene load_steps=9 format=3 uid="uid://bvce0kamrty8l"]
 
 [ext_resource type="Script" path="res://scripts/colorswitcher.gd" id="1_7opas"]
 [ext_resource type="Theme" uid="uid://d2qcoenct266e" path="res://GUI/main_theme.tres" id="1_e2m3s"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://q0mswombel16" path="res://map/main_menu.png" id="3_vpi6p"]
 [ext_resource type="Texture2D" uid="uid://dbef3llpoh81v" path="res://sprites/slime_gris.png" id="4_1bq74"]
 [ext_resource type="FontFile" uid="uid://22ea4f2g5r50" path="res://font/future-timesplitters/Future TimeSplitters.otf" id="5_7p4cy"]
+[ext_resource type="AudioStream" uid="uid://bskerbr2ivxeh" path="res://sound/main_menu_music.mp3" id="7_q0010"]
 
 [sub_resource type="Theme" id="Theme_0nurx"]
 Label/colors/font_color = Color(0.796796, 0.971622, 0.958018, 1)
@@ -226,6 +227,10 @@ offset_top = 138.0
 offset_right = 369.888
 offset_bottom = 157.656
 text = "Slime Them All"
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_q0010")
+autoplay = true
 
 [connection signal="pressed" from="Player1/LeftColor" to="Player1" method="prev_color"]
 [connection signal="pressed" from="Player1/RightColor" to="Player1" method="next_color"]

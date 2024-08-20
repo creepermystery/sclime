@@ -7,13 +7,19 @@ signal quit_game()
 @onready var camera: Camera2D = get_node("Camera")
 @onready var p1: CharacterBody2D = get_node("Player1")
 @onready var p2: CharacterBody2D = get_node("Player2")
+@onready var lost_life_sound: AudioStreamPlayer = get_node("SFX/LostLifeSound")
 
-# preloads
+# Preloads
 var slime_bits = preload("res://scenes/slime_bits.tscn")
 var coeurs = [preload("res://GUI/coeur_1.png"), preload("res://GUI/coeur_2.png"), preload("res://GUI/coeur_3.png")]
 
 var hearts1: int = 3
 var hearts2: int = 3
+
+var lost_life_sound_enabled: bool = true
+
+func enable_lost_life_sound() -> void:
+	lost_life_sound_enabled = true
 
 func _ready() -> void:
 	hearts1 = 3
@@ -46,6 +52,10 @@ func update_player_size(size: float, player: String):
 
 func _blast_zone_entered(body: Node2D) -> void:
 	if "player" in body:
+		if lost_life_sound_enabled :
+			lost_life_sound.play()
+			lost_life_sound_enabled = false
+			get_tree().create_timer(0.5).timeout.connect(enable_lost_life_sound)
 		if body.player == "1":
 			hearts1 -= 1
 			if hearts1 == 0:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://db7srs5qb4qwl"]
+[gd_scene load_steps=18 format=3 uid="uid://db7srs5qb4qwl"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_5whb1"]
 [ext_resource type="PackedScene" uid="uid://b3ffvuopvyt" path="res://scenes/heavy_platform.tscn" id="2_5rxeg"]
@@ -9,6 +9,10 @@
 [ext_resource type="PackedScene" path="res://scenes/light_platform.tscn" id="4_84tb3"]
 [ext_resource type="Texture2D" uid="uid://2m3gjnh44doe" path="res://GUI/coeur_3.png" id="8_0owou"]
 [ext_resource type="Texture2D" uid="uid://dbef3llpoh81v" path="res://sprites/slime_gris.png" id="9_63ggq"]
+[ext_resource type="AudioStream" uid="uid://cj0lx0othrihm" path="res://sound/game__music.mp3" id="11_fmuxg"]
+[ext_resource type="AudioStream" uid="uid://dofeqqaw5iq8t" path="res://sound/Win_sound.mp3" id="12_memmb"]
+[ext_resource type="AudioStream" uid="uid://bwsu7kdu8ae2m" path="res://sound/game-start.mp3" id="13_40pw6"]
+[ext_resource type="AudioStream" uid="uid://byhg57kyq8xox" path="res://sound/life_lost.mp3" id="14_e8cmc"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2wpff"]
 
@@ -35,7 +39,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_xysk8")
-expand_mode = 2
 
 [node name="map" type="Node2D" parent="."]
 
@@ -207,14 +210,24 @@ autostart = true
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 
-[node name="MenuMusic" type="AudioStreamPlayer" parent="Music"]
-
 [node name="GameMusic" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("11_fmuxg")
+volume_db = -7.531
+autoplay = true
 
 [node name="EndMusic" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("12_memmb")
 
-[connection signal="change_size" from="Player1" to="." method="update_player_size" binds= ["1"]]
-[connection signal="change_size" from="Player2" to="." method="update_player_size" binds= ["2"]]
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+
+[node name="GameStart" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("13_40pw6")
+volume_db = 3.748
+autoplay = true
+
+[node name="LostLifeSound" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("14_e8cmc")
+
 [connection signal="body_entered" from="BlastZone" to="." method="_blast_zone_entered"]
 [connection signal="pressed" from="GUILayer/GUI/Button" to="." method="quit"]
 [connection signal="timeout" from="SlimeBitsTimer" to="." method="spawn_slime_bits"]

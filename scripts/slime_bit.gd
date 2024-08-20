@@ -30,5 +30,8 @@ func _physics_process(_delta: float) -> void:
 	get_node("Hitbox/Stopped").disabled = true
 	
 func picked(body):
+	get_node("PickupSound").play()
+	get_node("Texture").visible = false
 	body.size += 10
+	await get_tree().create_timer(0.65).timeout
 	queue_free()
