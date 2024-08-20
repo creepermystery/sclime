@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvce0kamrty8l"]
+[gd_scene load_steps=8 format=3 uid="uid://bvce0kamrty8l"]
 
 [ext_resource type="Script" path="res://scripts/colorswitcher.gd" id="1_7opas"]
 [ext_resource type="Theme" uid="uid://d2qcoenct266e" path="res://GUI/main_theme.tres" id="1_e2m3s"]
 [ext_resource type="Script" path="res://scripts/mainmenu.gd" id="2_lwm3j"]
+[ext_resource type="Texture2D" uid="uid://q0mswombel16" path="res://map/main_menu.png" id="3_vpi6p"]
 [ext_resource type="Texture2D" uid="uid://dbef3llpoh81v" path="res://sprites/slime_gris.png" id="4_1bq74"]
+[ext_resource type="FontFile" uid="uid://22ea4f2g5r50" path="res://font/future-timesplitters/Future TimeSplitters.otf" id="5_7p4cy"]
+
+[sub_resource type="Theme" id="Theme_0nurx"]
+Label/colors/font_color = Color(0.796796, 0.971622, 0.958018, 1)
+Label/colors/font_outline_color = Color(0.242304, 0.6501, 0.630224, 1)
+Label/font_sizes/font_size = 50
+Label/fonts/font = ExtResource("5_7p4cy")
+Label/styles/normal = null
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -16,6 +25,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_e2m3s")
 script = ExtResource("2_lwm3j")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_vpi6p")
+expand_mode = 3
 
 [node name="Player1" type="Control" parent="."]
 layout_mode = 1
@@ -30,35 +49,36 @@ script = ExtResource("1_7opas")
 
 [node name="Tag" type="RichTextLabel" parent="Player1"]
 layout_mode = 0
-offset_left = 112.0
-offset_top = -90.0
-offset_right = 281.0
-offset_bottom = -22.0
+offset_left = 146.0
+offset_top = -89.0
+offset_right = 315.0
+offset_bottom = -21.0
+theme = SubResource("Theme_0nurx")
 text = "Player 1"
 
 [node name="Sprite" type="TextureRect" parent="Player1"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 49.0
-offset_top = -90.0
-offset_right = 301.0
-offset_bottom = 143.0
+offset_left = 93.0
+offset_top = -70.0
+offset_right = 345.0
+offset_bottom = 163.0
 texture = ExtResource("4_1bq74")
 
 [node name="LeftColor" type="Button" parent="Player1"]
 layout_mode = 0
-offset_left = 279.0
-offset_top = 13.0
-offset_right = 309.0
-offset_bottom = 75.0
+offset_left = 316.0
+offset_top = 14.0
+offset_right = 346.0
+offset_bottom = 76.0
 text = ">"
 
 [node name="RightColor" type="Button" parent="Player1"]
 layout_mode = 0
-offset_left = 62.0
-offset_top = 20.0
-offset_right = 92.0
-offset_bottom = 82.0
+offset_left = 95.0
+offset_top = 14.0
+offset_right = 125.0
+offset_bottom = 76.0
 text = "<"
 
 [node name="Player2" type="Control" parent="."]
@@ -86,10 +106,11 @@ text = "Player 2"
 [node name="Sprite" type="TextureRect" parent="Player2"]
 texture_filter = 1
 layout_mode = 0
-offset_left = -230.0
-offset_top = -92.0
-offset_right = 22.0
-offset_bottom = 141.0
+offset_left = -233.0
+offset_top = -73.0
+offset_right = 19.0
+offset_bottom = 160.0
+rotation = 0.00384997
 texture = ExtResource("4_1bq74")
 flip_h = true
 
@@ -116,10 +137,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -34.0
-offset_top = -144.0
-offset_right = 86.0
-offset_bottom = -82.0
+offset_left = -45.0
+offset_top = -215.0
+offset_right = 75.0
+offset_bottom = -153.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "FIGHT"
@@ -130,7 +151,8 @@ offset_left = 20.0
 offset_top = 22.0
 offset_right = 103.0
 offset_bottom = 84.0
-text = "quit"
+text = "Quit
+"
 
 [node name="HelpButton" type="Button" parent="."]
 layout_mode = 1
@@ -193,6 +215,17 @@ Dash: X
 Player 2:
 Movement: Arrows
 Dash: Shift"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.356
+anchor_bottom = 0.178
+offset_left = 389.0
+offset_top = 138.0
+offset_right = 369.888
+offset_bottom = 157.656
+text = "Slime Them All"
 
 [connection signal="pressed" from="Player1/LeftColor" to="Player1" method="prev_color"]
 [connection signal="pressed" from="Player1/RightColor" to="Player1" method="next_color"]

@@ -1,4 +1,13 @@
-[gd_resource type="Theme" format=3 uid="uid://d2qcoenct266e"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://d2qcoenct266e"]
+
+[ext_resource type="FontFile" uid="uid://cubl1450710xn" path="res://font/pixelfy/Pixelfy.ttf" id="1_7e56u"]
+[ext_resource type="FontFile" uid="uid://22ea4f2g5r50" path="res://font/future-timesplitters/Future TimeSplitters.otf" id="1_b867h"]
 
 [resource]
 default_font_size = 39
+Button/fonts/font = ExtResource("1_7e56u")
+Label/colors/font_color = Color(0.501238, 0.984596, 0.390782, 1)
+Label/colors/font_outline_color = Color(0, 0.65028, 0.29682, 1)
+Label/colors/font_shadow_color = Color(0.746549, 0.442385, 0.0343863, 0)
+Label/font_sizes/font_size = 100
+Label/fonts/font = ExtResource("1_b867h")
