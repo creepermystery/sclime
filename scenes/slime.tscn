@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://8goy43y2udku"]
+[gd_scene load_steps=109 format=3 uid="uid://8goy43y2udku"]
 
 [ext_resource type="Script" path="res://scripts/slime_movement.gd" id="1_g2pts"]
 [ext_resource type="Texture2D" uid="uid://ctexgukrhbr26" path="res://sprites/aura_slime_idle_Sheet.png" id="2_0i6uv"]
@@ -12,6 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://dryv355eaydqv" path="res://sprites/aura_slime_gris_saut_cote_Sheet.png" id="4_nsodw"]
 [ext_resource type="Texture2D" uid="uid://c6vr0v3wr30pt" path="res://sprites/slime_gris_attaque_Sheet.png" id="6_3o1u4"]
 [ext_resource type="Texture2D" uid="uid://bsyfiueoste76" path="res://sprites/slime_gris_saut_cote_Sheet.png" id="6_6njet"]
+[ext_resource type="Texture2D" uid="uid://di0sflhgj3h3y" path="res://sprites/aura_slime_gris_marche_Sheet.png" id="6_ke6b0"]
+[ext_resource type="Texture2D" uid="uid://8gnyy0u77182" path="res://sprites/slime_gris_marche_Sheet.png" id="12_4m1vh"]
+[ext_resource type="AudioStream" uid="uid://d22spv2hdupwc" path="res://sound/slime_hit_sound.mp3" id="13_oobvf"]
+[ext_resource type="AudioStream" uid="uid://drhp7lia7u6rk" path="res://sound/power_up_sound.mp3" id="15_1ma17"]
+[ext_resource type="AudioStream" uid="uid://g03x1iyouvf0" path="res://sound/slime_jump_sound.mp3" id="16_8n5ug"]
+[ext_resource type="AudioStream" uid="uid://c2wv68vsu4o5d" path="res://sound/slime_march_sound.mp3" id="17_0kwua"]
+[ext_resource type="AudioStream" uid="uid://cimmlnqdb0dv0" path="res://sound/slime_splash_sound.mp3" id="19_6ui7n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_88q0k"]
 atlas = ExtResource("2_7dn0f")
@@ -124,6 +131,18 @@ region = Rect2(120, 0, 40, 40)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2vaut"]
 atlas = ExtResource("2_8due3")
 region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mq5v"]
+atlas = ExtResource("6_ke6b0")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahj1l"]
+atlas = ExtResource("6_ke6b0")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rj6j"]
+atlas = ExtResource("6_ke6b0")
+region = Rect2(120, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4k46t"]
 atlas = ExtResource("4_nsodw")
@@ -292,6 +311,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_6mq5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahj1l")
+}, {
+"duration": 1000.0,
+"texture": SubResource("AtlasTexture_6rj6j")
+}],
+"loop": true,
+"name": &"aura-move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_4k46t")
 }, {
 "duration": 1.0,
@@ -447,6 +480,18 @@ region = Rect2(120, 0, 40, 40)
 [sub_resource type="AtlasTexture" id="AtlasTexture_e8wrx"]
 atlas = ExtResource("4_8lt3h")
 region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36tjq"]
+atlas = ExtResource("12_4m1vh")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kugxc"]
+atlas = ExtResource("12_4m1vh")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80gvj"]
+atlas = ExtResource("12_4m1vh")
+region = Rect2(120, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cwxff"]
 atlas = ExtResource("6_6njet")
@@ -623,6 +668,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_36tjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kugxc")
+}, {
+"duration": 1000.0,
+"texture": SubResource("AtlasTexture_80gvj")
+}],
+"loop": true,
+"name": &"slime-move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_cwxff")
 }, {
 "duration": 1.0,
@@ -691,8 +750,7 @@ texture_filter = 1
 position = Vector2(1.75, 0)
 scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_detlh")
-animation = &"aura-idle"
-frame = 2
+animation = &"aura-move"
 offset = Vector2(-1.5873, -0.492063)
 
 [node name="SlimeTexture" type="AnimatedSprite2D" parent="."]
@@ -701,7 +759,7 @@ texture_filter = 1
 position = Vector2(0.166667, 0)
 scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_b8xge")
-animation = &"slime-jump-start"
+animation = &"slime-move"
 offset = Vector2(-0.571428, -0.571428)
 
 [node name="SlimeHitboxDefault" type="CollisionShape2D" parent="."]
@@ -756,6 +814,24 @@ shape = SubResource("CapsuleShape2D_m2qeo")
 disabled = true
 debug_color = Color(1, 0.450811, 0.397295, 0.42)
 
+[node name="Sounds" type="AudioStreamPlayer" parent="."]
+
+[node name="DamageSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("13_oobvf")
+
+[node name="PowerUpSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("15_1ma17")
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("16_8n5ug")
+
+[node name="MoveSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("17_0kwua")
+
+[node name="SplashSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("19_6ui7n")
+
+[connection signal="damage_sound_signal" from="." to="." method="_on_damage_sound_signal"]
 [connection signal="body_entered" from="HurtboxRight" to="." method="_on_hurtbox_right_body_entered"]
 [connection signal="input_event" from="HurtboxRight" to="." method="_on_hurtbox_right_input_event"]
 [connection signal="body_entered" from="HurtboxLeft" to="." method="_on_hurtbox_left_body_entered"]

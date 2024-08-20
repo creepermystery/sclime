@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dbef3llpoh81v" path="res://sprites/slime_gris.png" id="4_1bq74"]
 [ext_resource type="Texture2D" uid="uid://dodxbu4kpyjmd" path="res://ui button icon/arrow_button.png" id="7_hmjcl"]
 [ext_resource type="Texture2D" uid="uid://co427cc8785so" path="res://ui button icon/arrow_button_left.png" id="8_a2u7d"]
+[ext_resource type="FontFile" uid="uid://22ea4f2g5r50" path="res://font/future-timesplitters/Future TimeSplitters.otf" id="5_7p4cy"]
+[ext_resource type="AudioStream" uid="uid://bskerbr2ivxeh" path="res://sound/main_menu_music.mp3" id="7_q0010"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_wjo73"]
 device = -1
@@ -446,6 +448,10 @@ offset_bottom = -70.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "The more life you loose the smaller you are . You can get bigger by eating the smile bits that falls on the platforms. "
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_q0010")
+autoplay = true
 
 [connection signal="pressed" from="Player1/LeftColor" to="Player1" method="prev_color"]
 [connection signal="pressed" from="Player1/RightColor" to="Player1" method="next_color"]
