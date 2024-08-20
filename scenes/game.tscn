@@ -39,16 +39,17 @@ texture = ExtResource("2_xysk8")
 [node name="map" type="Node2D" parent="."]
 
 [node name="HeavyPlatform" parent="map" instance=ExtResource("2_5rxeg")]
-position = Vector2(564, 1094)
+position = Vector2(429, 1155)
 
 [node name="MedPlatform2" parent="map" instance=ExtResource("3_j36vb")]
-position = Vector2(2379, 470)
+position = Vector2(2649, 429)
+rotation = -6.28319
 
 [node name="MedPlatform" parent="map" instance=ExtResource("3_j36vb")]
-position = Vector2(-1200, 412)
+position = Vector2(-1123, 409)
 
 [node name="LightPlatform" parent="map" instance=ExtResource("4_84tb3")]
-position = Vector2(-370, 108)
+position = Vector2(-385, 122)
 
 [node name="LightPlatform2" parent="map" instance=ExtResource("4_84tb3")]
 position = Vector2(616, 7)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dw6xo1jfjf33b"
-path="res://.godot/imported/wood_platform.png-b09c4a4a952ef661b8840816f12037d9.ctex"
+uid="uid://cqtnr7ej1xqmi"
+path="res://.godot/imported/aura_slime_gris_dash_Sheet.png-dccabf3ad903e15fe9bfdf626203e2a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://map/wood_platform.png"
-dest_files=["res://.godot/imported/wood_platform.png-b09c4a4a952ef661b8840816f12037d9.ctex"]
+source_file="res://sprites/aura_slime_gris_dash_Sheet.png"
+dest_files=["res://.godot/imported/aura_slime_gris_dash_Sheet.png-dccabf3ad903e15fe9bfdf626203e2a3.ctex"]
 
 [params]
 
