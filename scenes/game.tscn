@@ -35,6 +35,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_xysk8")
+expand_mode = 2
 
 [node name="map" type="Node2D" parent="."]
 
