@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://db7srs5qb4qwl"]
+[gd_scene load_steps=17 format=3 uid="uid://db7srs5qb4qwl"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_5whb1"]
 [ext_resource type="PackedScene" uid="uid://b3ffvuopvyt" path="res://scenes/heavy_platform.tscn" id="2_5rxeg"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://8goy43y2udku" path="res://scenes/slime.tscn" id="4_2cr76"]
 [ext_resource type="PackedScene" uid="uid://bhjwbdvptnel2" path="res://scenes/light_platform.tscn" id="4_84tb3"]
 [ext_resource type="Texture2D" uid="uid://2m3gjnh44doe" path="res://GUI/coeur_3.png" id="8_0owou"]
+[ext_resource type="Texture2D" uid="uid://oc4t3l8syw0l" path="res://ui button icon/cross_button.png" id="8_5towv"]
 [ext_resource type="Texture2D" uid="uid://dbef3llpoh81v" path="res://sprites/slime_gris.png" id="9_63ggq"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2wpff"]
@@ -20,6 +21,13 @@ distance = -2471.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_845hv"]
 distance = -607.0
+
+[sub_resource type="InputEventKey" id="InputEventKey_0jean"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_5ho4f"]
+events = [SubResource("InputEventKey_0jean")]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_5whb1")
@@ -44,6 +52,7 @@ position = Vector2(429, 1155)
 
 [node name="MedPlatform" parent="map" instance=ExtResource("3_j36vb")]
 position = Vector2(-1123, 409)
+script = null
 
 [node name="LightPlatform" parent="map" instance=ExtResource("4_84tb3")]
 position = Vector2(-385, 122)
@@ -56,7 +65,7 @@ position = Vector2(1427, 189)
 
 [node name="MedPlatform2" parent="map" instance=ExtResource("3_j36vb")]
 position = Vector2(2345, 409)
-flip = true
+script = null
 
 [node name="Player1" parent="." instance=ExtResource("4_2cr76")]
 position = Vector2(-432, 650)
@@ -109,9 +118,11 @@ theme = ExtResource("2_a5l1t")
 layout_mode = 0
 offset_left = 29.0
 offset_top = 27.0
-offset_right = 80.0
-offset_bottom = 89.0
-text = "x"
+offset_right = 77.0
+offset_bottom = 79.0
+shortcut = SubResource("Shortcut_5ho4f")
+icon = ExtResource("8_5towv")
+flat = true
 
 [node name="Player1" type="Control" parent="GUILayer"]
 layout_mode = 3
@@ -157,15 +168,22 @@ offset_bottom = 155.0
 theme = ExtResource("2_a5l1t")
 text = "0%"
 
+[node name="name_p1" type="RichTextLabel" parent="GUILayer/Player1"]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 58.0
+offset_right = 239.0
+offset_bottom = 83.0
+
 [node name="Player2" type="Control" parent="GUILayer"]
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -566.0
-offset_top = -26.0
-offset_right = -526.0
-offset_bottom = 14.0
+offset_left = -550.0
+offset_top = -27.0
+offset_right = -510.0
+offset_bottom = 13.0
 grow_horizontal = 2
 
 [node name="Health" type="TextureRect" parent="GUILayer/Player2"]
@@ -201,6 +219,13 @@ offset_right = 958.0
 offset_bottom = 157.0
 theme = ExtResource("2_a5l1t")
 text = "0%"
+
+[node name="name_p2" type="RichTextLabel" parent="GUILayer/Player2"]
+layout_mode = 0
+offset_left = 974.0
+offset_top = 59.0
+offset_right = 1107.0
+offset_bottom = 99.0
 
 [node name="SlimeBitsTimer" type="Timer" parent="."]
 wait_time = 30.0

@@ -1,18 +1,56 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvce0kamrty8l"]
+[gd_scene load_steps=20 format=3 uid="uid://bvce0kamrty8l"]
 
 [ext_resource type="Script" path="res://scripts/colorswitcher.gd" id="1_7opas"]
 [ext_resource type="Theme" uid="uid://d2qcoenct266e" path="res://GUI/main_theme.tres" id="1_e2m3s"]
 [ext_resource type="Script" path="res://scripts/mainmenu.gd" id="2_lwm3j"]
 [ext_resource type="Texture2D" uid="uid://q0mswombel16" path="res://map/main_menu.png" id="3_vpi6p"]
 [ext_resource type="Texture2D" uid="uid://dbef3llpoh81v" path="res://sprites/slime_gris.png" id="4_1bq74"]
-[ext_resource type="FontFile" uid="uid://22ea4f2g5r50" path="res://font/future-timesplitters/Future TimeSplitters.otf" id="5_7p4cy"]
+[ext_resource type="Texture2D" uid="uid://dodxbu4kpyjmd" path="res://ui button icon/arrow_button.png" id="7_hmjcl"]
+[ext_resource type="Texture2D" uid="uid://co427cc8785so" path="res://ui button icon/arrow_button_left.png" id="8_a2u7d"]
 
-[sub_resource type="Theme" id="Theme_0nurx"]
-Label/colors/font_color = Color(0.796796, 0.971622, 0.958018, 1)
-Label/colors/font_outline_color = Color(0.242304, 0.6501, 0.630224, 1)
-Label/font_sizes/font_size = 50
-Label/fonts/font = ExtResource("5_7p4cy")
-Label/styles/normal = null
+[sub_resource type="InputEventKey" id="InputEventKey_wjo73"]
+device = -1
+keycode = 68
+unicode = 100
+
+[sub_resource type="Shortcut" id="Shortcut_q4gr7"]
+events = [SubResource("InputEventKey_wjo73")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_v8f21"]
+device = -1
+keycode = 81
+unicode = 113
+
+[sub_resource type="Shortcut" id="Shortcut_nluvv"]
+events = [SubResource("InputEventKey_v8f21")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_s8yv3"]
+device = -1
+keycode = 4194321
+
+[sub_resource type="Shortcut" id="Shortcut_7vrmi"]
+events = [SubResource("InputEventKey_s8yv3")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_q4kyy"]
+device = -1
+keycode = 4194319
+
+[sub_resource type="Shortcut" id="Shortcut_kftbq"]
+events = [SubResource("InputEventKey_q4kyy")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_mcg7r"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_xi4bw"]
+events = [SubResource("InputEventKey_mcg7r")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_bvnmg"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_063u0"]
+events = [SubResource("InputEventKey_bvnmg")]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -36,50 +74,82 @@ grow_vertical = 2
 texture = ExtResource("3_vpi6p")
 expand_mode = 3
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -192.0
+offset_top = 170.0
+offset_right = 199.0
+offset_bottom = 275.0
+text = "Slime Them All"
+
 [node name="Player1" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -20.0
-offset_right = 40.0
-offset_bottom = 20.0
+offset_right = 20.0
+offset_bottom = 23.0
 grow_vertical = 2
 script = ExtResource("1_7opas")
-
-[node name="Tag" type="RichTextLabel" parent="Player1"]
-layout_mode = 0
-offset_left = 146.0
-offset_top = -89.0
-offset_right = 315.0
-offset_bottom = -21.0
-theme = SubResource("Theme_0nurx")
-text = "Player 1"
 
 [node name="Sprite" type="TextureRect" parent="Player1"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 93.0
-offset_top = -70.0
-offset_right = 345.0
-offset_bottom = 163.0
+offset_left = 108.0
+offset_top = -54.0
+offset_right = 357.0
+offset_bottom = 182.0
 texture = ExtResource("4_1bq74")
 
 [node name="LeftColor" type="Button" parent="Player1"]
+texture_filter = 1
 layout_mode = 0
-offset_left = 316.0
-offset_top = 14.0
-offset_right = 346.0
-offset_bottom = 76.0
-text = ">"
+offset_left = 280.0
+offset_top = 3.0
+offset_right = 387.0
+offset_bottom = 123.0
+mouse_default_cursor_shape = 2
+theme_type_variation = &"FlatButton"
+shortcut = SubResource("Shortcut_q4gr7")
+icon = ExtResource("7_hmjcl")
+flat = true
+expand_icon = true
 
 [node name="RightColor" type="Button" parent="Player1"]
+texture_filter = 1
 layout_mode = 0
-offset_left = 95.0
-offset_top = 14.0
-offset_right = 125.0
-offset_bottom = 76.0
-text = "<"
+offset_left = 75.0
+offset_top = 9.0
+offset_right = 187.0
+offset_bottom = 116.0
+mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_nluvv")
+icon = ExtResource("8_a2u7d")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="name_1" type="TextEdit" parent="Player1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 11.775
+anchor_top = -7.221
+anchor_right = 11.775
+anchor_bottom = -7.221
+offset_left = -76.5
+offset_top = 275.503
+offset_right = 79.5
+offset_bottom = 341.503
+text = "Player 1"
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+autowrap_mode = 2
 
 [node name="Player2" type="Control" parent="."]
 layout_mode = 1
@@ -95,40 +165,61 @@ grow_horizontal = 0
 grow_vertical = 2
 script = ExtResource("1_7opas")
 
-[node name="Tag" type="RichTextLabel" parent="Player2"]
-layout_mode = 0
-offset_left = -196.0
-offset_top = -98.0
-offset_right = -27.0
-offset_bottom = -30.0
-text = "Player 2"
-
 [node name="Sprite" type="TextureRect" parent="Player2"]
 texture_filter = 1
-layout_mode = 0
-offset_left = -233.0
-offset_top = -73.0
-offset_right = 19.0
-offset_bottom = 160.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -315.0
+offset_top = -67.0
+offset_right = -107.0
+offset_bottom = 147.0
+grow_horizontal = 2
+grow_vertical = 2
 rotation = 0.00384997
 texture = ExtResource("4_1bq74")
 flip_h = true
 
 [node name="LeftColor" type="Button" parent="Player2"]
+texture_filter = 1
 layout_mode = 0
-offset_left = -10.0
-offset_top = 20.0
-offset_right = 8.0
-offset_bottom = 51.0
-text = ">"
+offset_left = -147.0
+offset_top = 8.0
+offset_right = -11.0
+offset_bottom = 115.0
+mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_7vrmi")
+icon = ExtResource("7_hmjcl")
+flat = true
+expand_icon = true
 
 [node name="RightColor" type="Button" parent="Player2"]
+texture_filter = 1
 layout_mode = 0
-offset_left = -232.0
-offset_top = 7.0
-offset_right = -202.0
-offset_bottom = 69.0
-text = "<"
+offset_left = -349.0
+offset_top = -11.0
+offset_right = -241.0
+offset_bottom = 136.0
+mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_kftbq")
+icon = ExtResource("8_a2u7d")
+flat = true
+expand_icon = true
+
+[node name="name_2" type="TextEdit" parent="Player2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -4.787
+anchor_top = -7.482
+anchor_right = -4.787
+anchor_bottom = -7.482
+offset_left = -85.52
+offset_top = 254.28
+offset_right = 84.48
+offset_bottom = 320.28
+text = "Player 2"
+autowrap_mode = 2
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 1
@@ -137,34 +228,45 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -45.0
-offset_top = -215.0
-offset_right = 75.0
-offset_bottom = -153.0
+offset_left = -106.0
+offset_top = -323.0
+offset_right = 101.0
+offset_bottom = -245.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 70
+shortcut = SubResource("Shortcut_xi4bw")
 text = "FIGHT"
+flat = true
 
 [node name="QuitButton" type="Button" parent="."]
 layout_mode = 1
-offset_left = 20.0
+offset_left = 23.0
 offset_top = 22.0
-offset_right = 103.0
+offset_right = 116.0
 offset_bottom = 84.0
-text = "Quit
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 50
+shortcut = SubResource("Shortcut_063u0")
+text = "QUIT
 "
+flat = true
 
 [node name="HelpButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -76.0
-offset_top = 20.0
-offset_right = -29.0
+offset_left = -72.0
+offset_top = 14.0
+offset_right = -25.0
 offset_bottom = 82.0
 grow_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 60
 text = "?"
+flat = true
 
 [node name="HelpMenu" type="Control" parent="."]
 visible = false
@@ -188,44 +290,162 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.254902, 0, 1)
+color = Color(0, 0.254902, 0, 0.831373)
 
-[node name="Button" type="Button" parent="HelpMenu"]
-layout_mode = 0
-offset_left = 16.5
-offset_top = 20.0
-offset_right = 45.5
-offset_bottom = 82.0
-text = "x"
+[node name="contoller_button" type="Button" parent="HelpMenu"]
+offset_left = 341.5
+offset_right = 569.5
+offset_bottom = 61.0
+text = "Controller"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HelpMenu"]
+[node name="Control" type="Control" parent="HelpMenu"]
+visible = false
+anchors_preset = 0
+offset_top = 69.0
+offset_right = 926.0
+offset_bottom = 464.0
+
+[node name="Keyboard" type="RichTextLabel" parent="HelpMenu/Control"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 54.0
+offset_top = 42.0
+offset_right = -438.0
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+  Movement :     	      
+  Dash :              
+  Attack :         				
+"
+fit_content = true
+autowrap_mode = 2
+tab_size = 2
+
+[node name="Keyboard2" type="RichTextLabel" parent="HelpMenu/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 49.0
-offset_top = 64.0
-offset_right = -49.0
-offset_bottom = -59.0
+offset_left = 370.5
+offset_top = 41.0
+offset_right = -373.5
+offset_bottom = -75.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Player 1:
-Movement: WASD
-Dash: X
-Player 2:
-Movement: Arrows
-Dash: Shift"
+text = "Player 1 :
+  WASD
+   Shift
+      E"
+fit_content = true
+autowrap_mode = 2
 
-[node name="Label" type="Label" parent="."]
+[node name="Keyboard3" type="RichTextLabel" parent="HelpMenu/Control"]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.356
-anchor_bottom = 0.178
-offset_left = 389.0
-offset_top = 138.0
-offset_right = 369.888
-offset_bottom = 157.656
-text = "Slime Them All"
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 614.5
+offset_top = 39.0
+offset_right = -129.5
+offset_bottom = -77.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Player 2 :
+  Arrows
+       X
+       /"
+fit_content = true
+autowrap_mode = 2
+
+[node name="exit_button" type="Button" parent="HelpMenu"]
+layout_mode = 0
+offset_left = 1.5
+offset_right = 50.5
+offset_bottom = 61.0
+text = "x"
+
+[node name="keyboard_button" type="Button" parent="HelpMenu"]
+offset_left = 171.5
+offset_right = 340.5
+offset_bottom = 61.0
+text = "Keybord"
+
+[node name="Control2" type="Control" parent="HelpMenu"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_top = 69.0
+offset_right = 926.0
+offset_bottom = 464.0
+
+[node name="Controller" type="RichTextLabel" parent="HelpMenu/Control2"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 53.5
+offset_top = 14.0
+offset_right = -55.5
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+Movevement: 			left joystick
+Dash : 						 square / x
+Attack : 						  circle / b"
+
+[node name="Rules_button" type="Button" parent="HelpMenu"]
+offset_left = 50.5
+offset_right = 171.5
+offset_bottom = 61.0
+text = "Rules"
+
+[node name="Control3" type="Control" parent="HelpMenu"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 69.0
+offset_right = 926.0
+offset_bottom = 464.0
+
+[node name="Controller" type="RichTextLabel" parent="HelpMenu/Control3"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.5
+offset_top = 34.0
+offset_right = -31.5
+offset_bottom = -297.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "The goal is to push out your oponnent of the platforms 3 times."
+
+[node name="Controller2" type="RichTextLabel" parent="HelpMenu/Control3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.5
+offset_top = 116.0
+offset_right = -31.5
+offset_bottom = -211.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Your size determines on which platform you fit. "
+
+[node name="Controller3" type="RichTextLabel" parent="HelpMenu/Control3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 31.5
+offset_top = 208.0
+offset_right = -11.5
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "The more life you loose the smaller you are . You can get bigger by eating the smile bits that falls on the platforms. "
 
 [connection signal="pressed" from="Player1/LeftColor" to="Player1" method="prev_color"]
 [connection signal="pressed" from="Player1/RightColor" to="Player1" method="next_color"]
@@ -234,4 +454,7 @@ text = "Slime Them All"
 [connection signal="pressed" from="StartButton" to="." method="launch_game"]
 [connection signal="pressed" from="QuitButton" to="." method="quit"]
 [connection signal="pressed" from="HelpButton" to="." method="help"]
-[connection signal="pressed" from="HelpMenu/Button" to="." method="close_help"]
+[connection signal="pressed" from="HelpMenu/contoller_button" to="." method="controller_controls"]
+[connection signal="pressed" from="HelpMenu/exit_button" to="." method="close_help"]
+[connection signal="pressed" from="HelpMenu/keyboard_button" to="." method="keyboard_controls"]
+[connection signal="pressed" from="HelpMenu/Rules_button" to="." method="rules"]
