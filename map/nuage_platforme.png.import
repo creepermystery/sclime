@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqa87i6hdf8xa"
-path="res://.godot/imported/fond.png-58e6fa27ac924945e3df5fc799d8debd.ctex"
+uid="uid://baupqhwp3idbl"
+path="res://.godot/imported/nuage_platforme.png-681c30429286224e1e07c98bb7bb0a0a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/fond.png"
-dest_files=["res://.godot/imported/fond.png-58e6fa27ac924945e3df5fc799d8debd.ctex"]
+source_file="res://map/nuage_platforme.png"
+dest_files=["res://.godot/imported/nuage_platforme.png-681c30429286224e1e07c98bb7bb0a0a.ctex"]
 
 [params]
 

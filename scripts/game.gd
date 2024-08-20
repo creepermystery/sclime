@@ -8,6 +8,8 @@ signal quit_game()
 @onready var p1: CharacterBody2D = get_node("Player1")
 @onready var p2: CharacterBody2D = get_node("Player2")
 
+# preloads
+var slime_bits = preload("res://scenes/slime_bits.tscn")
 var coeurs = [preload("res://GUI/coeur_1.png"), preload("res://GUI/coeur_2.png"), preload("res://GUI/coeur_3.png")]
 
 var hearts1: int = 3
@@ -16,6 +18,11 @@ var hearts2: int = 3
 func _ready() -> void:
 	hearts1 = 3
 	hearts2 = 3
+
+func spawn_slime_bits() -> void:
+	var bit = slime_bits.instantiate()
+	add_child(bit)
+	bit.position = Vector2(randf_range(-1500, 2600), -1500)
 
 func quit():
 	quit_game.emit()
@@ -35,7 +42,7 @@ func _process(_delta: float) -> void:
 	camera.zoom = Vector2.ONE * (0.5*camera.zoom.x + ratio*0.5)
 
 func update_player_size(size: float, player: String):
-	get_node("GUILayer/Player" + player + "/Size").text = str(floor((size - 4.0)/96*100)) + "%"
+	get_node("GUILayer/Player" + player + "/Size").text = str(floor((size - 4.0)/96.0*100.0)) + "%"
 
 func _blast_zone_entered(body: Node2D) -> void:
 	if "player" in body:

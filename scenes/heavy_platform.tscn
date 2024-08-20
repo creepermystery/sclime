@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3ffvuopvyt"]
+[gd_scene load_steps=5 format=3 uid="uid://b3ffvuopvyt"]
 
 [ext_resource type="Texture2D" uid="uid://cs2jr0c7j40kg" path="res://map/grass_platform.png" id="1_uuv7m"]
+[ext_resource type="Script" path="res://scripts/sol.gd" id="2_3clda"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6bp1g"]
 size = Vector2(3563.26, 547)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76jja"]
+size = Vector2(3708, 126)
 
 [node name="HeavyPlatform" type="Node2D"]
 
@@ -21,4 +25,13 @@ collision_mask = 0
 texture_filter = 1
 position = Vector2(-4.29019e-05, 24.5)
 shape = SubResource("RectangleShape2D_6bp1g")
-one_way_collision = true
+
+[node name="Sol" type="Area2D" parent="."]
+collision_layer = 16
+script = ExtResource("2_3clda")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sol"]
+position = Vector2(13, -184)
+shape = SubResource("RectangleShape2D_76jja")
+
+[connection signal="body_entered" from="Sol" to="Sol" method="_on_body_entered"]

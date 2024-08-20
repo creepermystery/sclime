@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6jwps5032lnw"
-path="res://.godot/imported/coeur_3.png-7e2137c786ae68623ad18e3999724b6b.ctex"
+uid="uid://q0mswombel16"
+path="res://.godot/imported/main_menu.png-79cc8a80843edee6bd1572c3088fe90b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/coeur_3.png"
-dest_files=["res://.godot/imported/coeur_3.png-7e2137c786ae68623ad18e3999724b6b.ctex"]
+source_file="res://map/main_menu.png"
+dest_files=["res://.godot/imported/main_menu.png-79cc8a80843edee6bd1572c3088fe90b.ctex"]
 
 [params]
 
