@@ -1,6 +1,7 @@
 extends Node2D
 
 signal quit_game()
+signal victory(player: int, color: Color)
 
 @export var zoom = 2.3
 
@@ -59,14 +60,14 @@ func _blast_zone_entered(body: Node2D) -> void:
 		if body.player == "1":
 			hearts1 -= 1
 			if hearts1 == 0:
-				quit()
+				victory.emit(2, body.texture.self_modulate)
 				return
 			get_node("GUILayer/Player1/Health").texture = coeurs[hearts1 - 1]
 			body.respawn()
 		else:
 			hearts2 -= 1
 			if hearts2 == 0:
-				quit()
+				victory.emit(2, body.texture.self_modulate)
 				return
 			get_node("GUILayer/Player2/Health").texture = coeurs[hearts2 - 1]
 			body.respawn()
