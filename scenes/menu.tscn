@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bvce0kamrty8l"]
+[gd_scene load_steps=21 format=3 uid="uid://bvce0kamrty8l"]
 
 [ext_resource type="Script" path="res://scripts/colorswitcher.gd" id="1_7opas"]
 [ext_resource type="Theme" uid="uid://d2qcoenct266e" path="res://GUI/main_theme.tres" id="1_e2m3s"]
@@ -6,9 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://q0mswombel16" path="res://map/main_menu.png" id="3_vpi6p"]
 [ext_resource type="Texture2D" uid="uid://dbef3llpoh81v" path="res://sprites/slime_gris.png" id="4_1bq74"]
 [ext_resource type="Texture2D" uid="uid://dodxbu4kpyjmd" path="res://ui button icon/arrow_button.png" id="7_hmjcl"]
-[ext_resource type="Texture2D" uid="uid://co427cc8785so" path="res://ui button icon/arrow_button_left.png" id="8_a2u7d"]
-[ext_resource type="FontFile" uid="uid://22ea4f2g5r50" path="res://font/future-timesplitters/Future TimeSplitters.otf" id="5_7p4cy"]
 [ext_resource type="AudioStream" uid="uid://bskerbr2ivxeh" path="res://sound/main_menu_music.mp3" id="7_q0010"]
+[ext_resource type="Texture2D" uid="uid://co427cc8785so" path="res://ui button icon/arrow_button_left.png" id="8_a2u7d"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_wjo73"]
 device = -1
@@ -81,10 +80,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -192.0
-offset_top = 170.0
-offset_right = 199.0
-offset_bottom = 275.0
+offset_left = -190.0
+offset_top = 169.0
+offset_right = 201.0
+offset_bottom = 274.0
 text = "Slime Them All"
 
 [node name="Player1" type="Control" parent="."]
@@ -135,23 +134,17 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="name_1" type="TextEdit" parent="Player1"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Player1"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 11.775
-anchor_top = -7.221
-anchor_right = 11.775
-anchor_bottom = -7.221
-offset_left = -76.5
-offset_top = 275.503
-offset_right = 79.5
-offset_bottom = 341.503
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 136.0
+offset_top = -61.0
+offset_right = 321.0
+offset_bottom = -28.0
+grow_vertical = 0
 text = "Player 1"
-deselect_on_focus_loss_enabled = false
-drag_and_drop_selection_enabled = false
-virtual_keyboard_enabled = false
-middle_mouse_paste_enabled = false
-autowrap_mode = 2
 
 [node name="Player2" type="Control" parent="."]
 layout_mode = 1
@@ -209,19 +202,18 @@ icon = ExtResource("8_a2u7d")
 flat = true
 expand_icon = true
 
-[node name="name_2" type="TextEdit" parent="Player2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Player2"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = -4.787
-anchor_top = -7.482
-anchor_right = -4.787
-anchor_bottom = -7.482
-offset_left = -85.52
-offset_top = 254.28
-offset_right = 84.48
-offset_bottom = 320.28
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -58.0
+offset_right = -135.0
+offset_bottom = -25.0
 text = "Player 2"
-autowrap_mode = 2
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 1
@@ -295,6 +287,7 @@ grow_vertical = 2
 color = Color(0, 0.254902, 0, 0.831373)
 
 [node name="contoller_button" type="Button" parent="HelpMenu"]
+layout_mode = 0
 offset_left = 341.5
 offset_right = 569.5
 offset_bottom = 61.0
@@ -370,6 +363,7 @@ offset_bottom = 61.0
 text = "x"
 
 [node name="keyboard_button" type="Button" parent="HelpMenu"]
+layout_mode = 0
 offset_left = 171.5
 offset_right = 340.5
 offset_bottom = 61.0
@@ -399,6 +393,7 @@ Dash : 						 square / x
 Attack : 						  circle / b"
 
 [node name="Rules_button" type="Button" parent="HelpMenu"]
+layout_mode = 0
 offset_left = 50.5
 offset_right = 171.5
 offset_bottom = 61.0
