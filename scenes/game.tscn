@@ -1,16 +1,14 @@
-[gd_scene load_steps=25 format=3 uid="uid://db7srs5qb4qwl"]
+[gd_scene load_steps=14 format=3 uid="uid://db7srs5qb4qwl"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_5whb1"]
 [ext_resource type="PackedScene" uid="uid://b3ffvuopvyt" path="res://scenes/heavy_platform.tscn" id="2_5rxeg"]
 [ext_resource type="Theme" uid="uid://d2qcoenct266e" path="res://GUI/main_theme.tres" id="2_a5l1t"]
-[ext_resource type="Texture2D" uid="uid://dqa87i6hdf8xa" path="res://sprites/fond.png" id="2_xysk8"]
-[ext_resource type="PackedScene" path="res://scenes/med_platform.tscn" id="3_j36vb"]
+[ext_resource type="Texture2D" uid="uid://dqa87i6hdf8xa" path="res://map/fond.png" id="2_xysk8"]
+[ext_resource type="PackedScene" uid="uid://dlwr1jjubasjo" path="res://scenes/med_platform.tscn" id="3_j36vb"]
 [ext_resource type="PackedScene" uid="uid://8goy43y2udku" path="res://scenes/slime.tscn" id="4_2cr76"]
-[ext_resource type="PackedScene" path="res://scenes/light_platform.tscn" id="4_84tb3"]
+[ext_resource type="PackedScene" uid="uid://bhjwbdvptnel2" path="res://scenes/light_platform.tscn" id="4_84tb3"]
 [ext_resource type="Texture2D" uid="uid://2m3gjnh44doe" path="res://GUI/coeur_3.png" id="8_0owou"]
 [ext_resource type="Texture2D" uid="uid://dbef3llpoh81v" path="res://sprites/slime_gris.png" id="9_63ggq"]
-[ext_resource type="Texture2D" uid="uid://dmpaqfxs3fiij" path="res://sprites/chute_bout_de_slime_empile_Sheet.png" id="10_kja4u"]
-[ext_resource type="Script" path="res://scripts/slime_bit.gd" id="10_tdmrl"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2wpff"]
 
@@ -22,71 +20,6 @@ distance = -2471.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_845hv"]
 distance = -607.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_63f1r"]
-size = Vector2(11.7711, 10.632)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6s8qs"]
-atlas = ExtResource("10_kja4u")
-region = Rect2(240, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_brskg"]
-atlas = ExtResource("10_kja4u")
-region = Rect2(280, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ma8xn"]
-atlas = ExtResource("10_kja4u")
-region = Rect2(320, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lvdnn"]
-atlas = ExtResource("10_kja4u")
-region = Rect2(360, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7tl2e"]
-atlas = ExtResource("10_kja4u")
-region = Rect2(400, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qh46o"]
-atlas = ExtResource("10_kja4u")
-region = Rect2(440, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rgpyu"]
-atlas = ExtResource("10_kja4u")
-region = Rect2(480, 0, 40, 40)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_7oaf4"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6s8qs")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_brskg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ma8xn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lvdnn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7tl2e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qh46o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rgpyu")
-}],
-"loop": true,
-"name": &"touch-ground",
-"speed": 5.0
-}]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_5whb1")
@@ -141,7 +74,7 @@ position = Vector2(542, 1)
 collision_layer = 0
 
 [node name="CollisionUp" type="CollisionShape2D" parent="BlastZone"]
-position = Vector2(29, -2276)
+position = Vector2(-47, -2638)
 rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_2wpff")
 
@@ -150,7 +83,7 @@ position = Vector2(-12, 2235)
 shape = SubResource("WorldBoundaryShape2D_w0pah")
 
 [node name="CollisionLeft" type="CollisionShape2D" parent="BlastZone"]
-position = Vector2(-1816, 0)
+position = Vector2(-1968, 0)
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_w0arl")
 
@@ -267,27 +200,12 @@ offset_bottom = 157.0
 theme = ExtResource("2_a5l1t")
 text = "0%"
 
-[node name="SlimeBit" type="RigidBody2D" parent="."]
-position = Vector2(551, -428)
-collision_layer = 16
-collision_mask = 14
-lock_rotation = true
-script = ExtResource("10_tdmrl")
-
-[node name="Hitbox" type="CollisionShape2D" parent="SlimeBit"]
-position = Vector2(-2.48764, 63.8921)
-scale = Vector2(5, 5)
-shape = SubResource("RectangleShape2D_63f1r")
-
-[node name="Texture" type="AnimatedSprite2D" parent="SlimeBit"]
-texture_filter = 1
-position = Vector2(-1.99999, 64)
-scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_7oaf4")
-frame_progress = 0.00767246
-offset = Vector2(-0.615385, 1.30769)
+[node name="SlimeBitsTimer" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
 
 [connection signal="change_size" from="Player1" to="." method="update_player_size" binds= ["1"]]
 [connection signal="change_size" from="Player2" to="." method="update_player_size" binds= ["2"]]
 [connection signal="body_entered" from="BlastZone" to="." method="_blast_zone_entered"]
 [connection signal="pressed" from="GUILayer/GUI/Button" to="." method="quit"]
+[connection signal="timeout" from="SlimeBitsTimer" to="." method="spawn_slime_bits"]

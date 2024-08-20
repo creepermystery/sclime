@@ -24,13 +24,16 @@ enum State {default, dash, jump, duck, fall, attack}
 var current_state: State = State.default
 var xspawn: float
 
+var nofall: bool = false
+
 @export var size: float = 60:
 	get:
 		return size
 	set(value): 
+		var oldsize = size
 		size = clamp(value, 5, 100)
-		scale =  Vector2.ONE * value * 0.3
-		change_size.emit(value)
+		scale =  Vector2.ONE * size * 0.3
+		change_size.emit(size)
 		if not aura: 
 			return
 		if size > 50:
@@ -42,9 +45,19 @@ var xspawn: float
 		else :
 			aura.self_modulate = Color(255, 255, 0, 0.8)
 			collision_mask = 15
+		if is_on_floor():
+			position.y -= (size-oldsize)*2.5
+			velocity.y = 100
+			nofall = true
+			get_tree().create_timer(0.1).timeout.connect(stop_nofall)
+
+func stop_nofall():
+	nofall = false
 
 func respawn():
-	position = Vector2(xspawn, -1800)
+	position = Vector2(xspawn, -1000)
+	size = 60
+	velocity = Vector2.ZERO
 
 func set_color(color: Color):
 	texture.self_modulate = color
@@ -108,7 +121,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	# Mid air physics.
-	if not is_on_floor():
+	if not is_on_floor() and not nofall:
 		var direction_fall := Input.get_axis(player + "_left", player + "_right")
 		if velocity.y > 0 and direction_fall == 0:
 			current_state = State.fall
@@ -133,7 +146,7 @@ func _physics_process(delta: float) -> void:
 			right_jump_hitbox.disabled = false
 		velocity += get_gravity() * delta
 	# Hitting floor animation.
-	elif current_state == State.fall :
+	elif current_state == State.fall and not nofall:
 		texture.play("slime-hit-floor")
 		hitbox_to_normal()
 		default_hitbox.disabled = true
@@ -231,3 +244,13 @@ func _physics_process(delta: float) -> void:
 	if direction == 0 and current_state == State.default and is_on_floor() :
 		texture.play("slime-idle")
 	move_and_slide()
+
+# Attack knockbacks
+func _on_hurtbox_right_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
+
+func _on_hurtbox_left_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
+
+func _on_hurtbox_right_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	pass # Replace with function body.

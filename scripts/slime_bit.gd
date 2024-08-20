@@ -1,6 +1,5 @@
 extends RigidBody2D
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -10,18 +9,26 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-func stop_texture(texture: AnimatedSprite2D) -> void :
-	texture.pause()
+func stop_texture() -> void :
+	get_node("Texture").pause()
 
 func start_texture(texture: AnimatedSprite2D) -> void :
 	if linear_velocity.y == 0 :
 		texture.play("touch-ground")
-		get_tree().create_timer(1.1).timeout.connect(stop_texture.bind(texture))
+		get_node("Hitbox/Dropping").disabled = true
+		get_node("Hitbox/Stopped").disabled = false
+		get_node("Timer").start()
 
 func _physics_process(_delta: float) -> void:
 	var texture: AnimatedSprite2D = get_node("Texture")
 	if linear_velocity.y == 0 :
+		if texture.animation == "default":
+			start_texture(texture)
 		return
 	texture.play("default")
-	get_tree().create_timer(0.1).timeout.connect(start_texture.bind(texture))
+	get_node("Hitbox/Dropping").disabled = false
+	get_node("Hitbox/Stopped").disabled = true
 	
+func picked(body):
+	body.size += 10
+	queue_free()
