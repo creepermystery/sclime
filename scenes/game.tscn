@@ -206,8 +206,6 @@ text = "0%"
 wait_time = 30.0
 autostart = true
 
-[connection signal="change_size" from="Player1" to="." method="update_player_size" binds= ["1"]]
-[connection signal="change_size" from="Player2" to="." method="update_player_size" binds= ["2"]]
 [connection signal="body_entered" from="BlastZone" to="." method="_blast_zone_entered"]
 [connection signal="pressed" from="GUILayer/GUI/Button" to="." method="quit"]
 [connection signal="timeout" from="SlimeBitsTimer" to="." method="spawn_slime_bits"]

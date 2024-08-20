@@ -54,6 +54,14 @@ var nofall: bool = false
 func stop_nofall():
 	nofall = false
 
+func end_head_bump():
+	current_state = State.default
+	right_attack_hurtbox.disabled = true
+	left_attack_hurtbox.disabled = true
+	hitbox_to_normal()
+	texture.play("slime-idle")
+	aura.play("aura-idle")
+
 func respawn():
 	position = Vector2(xspawn, -1000)
 	size = 60
@@ -121,6 +129,8 @@ func _physics_process(delta: float) -> void:
 		var _direction = -1 if texture.flip_h else 1
 		velocity.x = DASH_SPEED * _direction
 		move_and_slide()
+		return
+	if current_state == State.attack: 
 		return
 
 	# Mid air physics.
@@ -230,7 +240,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta * 80
 
 	# Headbump attacks
-	if Input.is_action_just_pressed(player + "_attack"):
+	if Input.is_action_just_pressed(player + "_attack") and is_on_floor():
 		current_state = State.attack
 		texture.play("slime-headbump")
 		aura.play("aura-headbump")
@@ -238,16 +248,11 @@ func _physics_process(delta: float) -> void:
 			left_attack_hurtbox.disabled = false
 		else :
 			right_attack_hurtbox.disabled = false
-		await get_tree().create_timer(1).timeout
-		right_attack_hurtbox.disabled = true
-		left_attack_hurtbox.disabled = true
-		hitbox_to_normal()
-		texture.play("slime-idle")
-		aura.play("aura-idle")
+		get_tree().create_timer(1).timeout.connect(end_head_bump)
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis(player + "_left", player + "_right")
-	if direction and current_state != State.duck :
+	if direction and current_state != State.duck:
 		velocity.x = direction * SPEED
 	elif direction and current_state == State.duck:
 		velocity.x = direction * SPEED / 3
@@ -265,14 +270,14 @@ func _physics_process(delta: float) -> void:
 	if direction == 0 and current_state == State.default and is_on_floor() :
 		texture.play("slime-idle")
 		aura.play("aura-idle")
+
 	move_and_slide()
-
-# Attack knockbacks
-func _on_hurtbox_right_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
-
-func _on_hurtbox_left_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
-
-func _on_hurtbox_right_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	pass # Replace with function body.
+	
+	for i in range(get_slide_collision_count()):	
+		var collision: KinematicCollision2D = get_slide_collision(i)
+		var slime = collision.get_collider()
+		if not "player" in slime:
+			return
+		slime.velocity += collision.get_normal()
+		#wip
+		
