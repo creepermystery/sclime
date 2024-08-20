@@ -1,13 +1,6 @@
 extends RigidBody2D
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+var eaten := false
 
 func stop_texture() -> void :
 	get_node("Texture").pause()
@@ -30,8 +23,16 @@ func _physics_process(_delta: float) -> void:
 	get_node("Hitbox/Stopped").disabled = true
 	
 func picked(body):
-	get_node("PickupSound").play()
+	if eaten:
+		return
+	eaten = true
 	get_node("Texture").visible = false
 	body.size += 10
+	disable_hitboxes.call_deferred()
+	get_node("PickupSound").play()
 	await get_tree().create_timer(0.65).timeout
-	queue_free()
+	queue_free.call_deferred()
+
+func disable_hitboxes():
+	get_node("Hitbox/Dropping").disabled = true
+	get_node("Hitbox/Stopped").disabled = true

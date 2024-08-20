@@ -1,4 +1,4 @@
-[gd_scene load_steps=1011 format=3 uid="uid://8goy43y2udku"]
+[gd_scene load_steps=113 format=3 uid="uid://8goy43y2udku"]
 
 [ext_resource type="Script" path="res://scripts/slime_movement.gd" id="1_g2pts"]
 [ext_resource type="Texture2D" uid="uid://ctexgukrhbr26" path="res://sprites/aura_slime_idle_Sheet.png" id="2_0i6uv"]
@@ -14,10 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://cyd5xnmk7cfq5" path="res://sprites/aura_slime_gris_hurt.png" id="5_shfqk"]
 [ext_resource type="Texture2D" uid="uid://c6vr0v3wr30pt" path="res://sprites/slime_gris_attaque_Sheet.png" id="6_3o1u4"]
 [ext_resource type="Texture2D" uid="uid://bsyfiueoste76" path="res://sprites/slime_gris_saut_cote_Sheet.png" id="6_6njet"]
-[ext_resource type="Texture2D" uid="uid://xclwkc24a2d3" path="res://sprites/slime_gris_ecrase.png" id="9_7ap4s"]
-[ext_resource type="Texture2D" uid="uid://cq5pkjnw3xp1o" path="res://sprites/slime_gris_hurt.png" id="12_f2o8i"]
 [ext_resource type="Texture2D" uid="uid://di0sflhgj3h3y" path="res://sprites/aura_slime_gris_marche_Sheet.png" id="6_ke6b0"]
+[ext_resource type="Texture2D" uid="uid://xclwkc24a2d3" path="res://sprites/slime_gris_ecrase.png" id="9_7ap4s"]
 [ext_resource type="Texture2D" uid="uid://8gnyy0u77182" path="res://sprites/slime_gris_marche_Sheet.png" id="12_4m1vh"]
+[ext_resource type="Texture2D" uid="uid://cq5pkjnw3xp1o" path="res://sprites/slime_gris_hurt.png" id="12_f2o8i"]
 [ext_resource type="AudioStream" uid="uid://d22spv2hdupwc" path="res://sound/slime_hit_sound.mp3" id="13_oobvf"]
 [ext_resource type="AudioStream" uid="uid://drhp7lia7u6rk" path="res://sound/power_up_sound.mp3" id="15_1ma17"]
 [ext_resource type="AudioStream" uid="uid://g03x1iyouvf0" path="res://sound/slime_jump_sound.mp3" id="16_8n5ug"]
@@ -786,7 +786,6 @@ texture_filter = 1
 position = Vector2(1.75, 0)
 scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_detlh")
-animation = &"aura-ecrase"
 animation = &"aura-move"
 offset = Vector2(-1.5873, -0.492063)
 
@@ -796,7 +795,6 @@ texture_filter = 1
 position = Vector2(0.166667, 0)
 scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_b8xge")
-animation = &"slime-ecrase"
 animation = &"slime-move"
 offset = Vector2(-0.571428, -0.571428)
 
@@ -872,8 +870,8 @@ stream = ExtResource("17_0kwua")
 [node name="SplashSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("19_6ui7n")
 
-[connection signal="body_entered" from="HurtboxRight" to="." method="on_hurtbox_entered"]
 [connection signal="damage_sound_signal" from="." to="." method="_on_damage_sound_signal"]
+[connection signal="body_entered" from="HurtboxRight" to="." method="on_hurtbox_entered"]
 [connection signal="body_entered" from="HurtboxRight" to="." method="_on_hurtbox_right_body_entered"]
 [connection signal="input_event" from="HurtboxRight" to="." method="_on_hurtbox_right_input_event"]
 [connection signal="body_entered" from="HurtboxLeft" to="." method="on_hurtbox_entered"]

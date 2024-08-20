@@ -209,7 +209,7 @@ func get_collisionned(my_strength, other_strength, normal):
 		get_node("Hurt").start()
 		is_hurt = true
 		get_tree().create_timer(0.8).timeout.connect(end_hurt)
-		size -= (other_strength - my_strength)/700
+		size -= 3*(other_strength - my_strength)/700
 		yknockback *= 1.5
 		knockback *= 1.5
 
@@ -261,7 +261,7 @@ func _physics_process(delta: float) -> void:
 			get_node("Hurt").start()
 			is_hurt = true
 			get_tree().create_timer(0.8).timeout.connect(end_hurt)
-			size -= (other_strength - my_strength)/700
+			size -= 3*(other_strength - my_strength)/700
 			yknockback *= 1.5
 			knockback *= 1.5
 		if current_state == State.attack:
@@ -465,7 +465,7 @@ func _physics_process(delta: float) -> void:
 		texture.play("slime-idle")
 		aura.play("aura-idle")
 	elif direction != 0 and current_state == State.default and is_on_floor() :
-		if texture.animation != "slime-move":
+		if texture.animation != "slime-move" and not is_frame_hurt:
 			texture.play("slime-move")
 			aura.play("aura-move")
 		if move_sound_enabled:
