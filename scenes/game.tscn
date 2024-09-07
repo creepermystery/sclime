@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://8goy43y2udku" path="res://scenes/slime.tscn" id="4_2cr76"]
 [ext_resource type="PackedScene" uid="uid://bhjwbdvptnel2" path="res://scenes/light_platform.tscn" id="4_84tb3"]
 [ext_resource type="Texture2D" uid="uid://2m3gjnh44doe" path="res://GUI/coeur_3.png" id="8_0owou"]
-[ext_resource type="Texture2D" uid="uid://oc4t3l8syw0l" path="res://ui button icon/cross_button.png" id="8_hw3ou"]
+[ext_resource type="Texture2D" uid="uid://oc4t3l8syw0l" path="res://GUI/cross_button.png" id="8_hw3ou"]
 [ext_resource type="Texture2D" uid="uid://dbef3llpoh81v" path="res://sprites/slime_gris.png" id="9_63ggq"]
 [ext_resource type="AudioStream" uid="uid://cj0lx0othrihm" path="res://sound/game__music.mp3" id="11_fmuxg"]
 [ext_resource type="AudioStream" uid="uid://bwsu7kdu8ae2m" path="res://sound/game-start.mp3" id="13_40pw6"]

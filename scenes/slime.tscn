@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ba2n6cunedf6w" path="res://sprites/aura_slime_gris_attaque_Sheet.png" id="2_lybem"]
 [ext_resource type="Texture2D" uid="uid://etwx5fl0kf41" path="res://sprites/aura_slime_gris_ecrase.png" id="3_6bujl"]
 [ext_resource type="Texture2D" uid="uid://fhkxe0b2oyup" path="res://sprites/slime_gris_dash_Sheet.png" id="3_fhh6g"]
-[ext_resource type="Texture2D" uid="uid://ds1q6umkj270c" path="res://sprites/Slime_idle_gray_Sheet.png" id="3_g7fry"]
+[ext_resource type="Texture2D" uid="uid://bcutk2bqr4d5m" path="res://sprites/slime_idle_Sheet.png" id="3_g7fry"]
 [ext_resource type="Texture2D" uid="uid://csmxlrylahdu7" path="res://sprites/slime_gris_saut_idle_Sheet.png" id="4_8lt3h"]
 [ext_resource type="Texture2D" uid="uid://dryv355eaydqv" path="res://sprites/aura_slime_gris_saut_cote_Sheet.png" id="4_nsodw"]
 [ext_resource type="Texture2D" uid="uid://cyd5xnmk7cfq5" path="res://sprites/aura_slime_gris_hurt.png" id="5_shfqk"]
@@ -465,21 +465,21 @@ region = Rect2(480, 0, 40, 40)
 atlas = ExtResource("4_8lt3h")
 region = Rect2(520, 0, 40, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qlysc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4q0x"]
 atlas = ExtResource("3_g7fry")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(0, 0, 40, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b6dg5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xo1al"]
 atlas = ExtResource("3_g7fry")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(40, 0, 40, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6l4ow"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fg5as"]
 atlas = ExtResource("3_g7fry")
-region = Rect2(64, 0, 32, 32)
+region = Rect2(120, 0, 40, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0hmex"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_782jd"]
 atlas = ExtResource("3_g7fry")
-region = Rect2(96, 0, 32, 32)
+region = Rect2(80, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2bpap"]
 atlas = ExtResource("4_8lt3h")
@@ -667,16 +667,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qlysc")
+"texture": SubResource("AtlasTexture_e4q0x")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b6dg5")
+"texture": SubResource("AtlasTexture_xo1al")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6l4ow")
+"texture": SubResource("AtlasTexture_fg5as")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0hmex")
+"texture": SubResource("AtlasTexture_782jd")
 }],
 "loop": true,
 "name": &"slime-idle",
@@ -795,7 +795,8 @@ texture_filter = 1
 position = Vector2(0.166667, 0)
 scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_b8xge")
-animation = &"slime-move"
+animation = &"slime-idle"
+frame_progress = 0.349948
 offset = Vector2(-0.571428, -0.571428)
 
 [node name="SlimeHitboxDefault" type="CollisionShape2D" parent="."]
@@ -871,8 +872,8 @@ stream = ExtResource("17_0kwua")
 stream = ExtResource("19_6ui7n")
 
 [connection signal="damage_sound_signal" from="." to="." method="_on_damage_sound_signal"]
-[connection signal="body_entered" from="HurtboxRight" to="." method="_on_hurtbox_right_body_entered"]
 [connection signal="body_entered" from="HurtboxRight" to="." method="on_hurtbox_entered"]
+[connection signal="body_entered" from="HurtboxRight" to="." method="_on_hurtbox_right_body_entered"]
 [connection signal="input_event" from="HurtboxRight" to="." method="_on_hurtbox_right_input_event"]
 [connection signal="body_entered" from="HurtboxLeft" to="." method="on_hurtbox_entered"]
 [connection signal="timeout" from="Hurt" to="." method="clignote_hurt"]

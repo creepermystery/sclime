@@ -10,12 +10,12 @@ config_version=5
 
 [application]
 
-config/name="sclime"
+config/name="Slime Them All"
 run/main_scene="res://scenes/sclime.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0.0294613, 0.191839, 0.224849, 1)
-boot_splash/image="res://map/main_menu.png"
-config/icon="res://sprites/slime_gris.png"
+boot_splash/image="res://screenshots/main.png"
+config/icon="res://GUI/icon.png"
 
 [input]
 

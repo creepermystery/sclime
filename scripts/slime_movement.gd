@@ -27,8 +27,8 @@ signal damage_sound_signal()
 
 const KNOCKBACK_STRENGTH : float = 2400
 const SPEED := 550.0
-const DASH_SPEED := 3000.0
-const JUMP_VELOCITY := -800.0
+const DASH_SPEED := 2500.0
+const JUMP_VELOCITY := -1100.0
 
 enum State {default, dash, jump, duck, fall, attack}
 
@@ -287,7 +287,7 @@ func _physics_process(delta: float) -> void:
 	if current_state == State.dash and not is_hurt:
 		var _direction = -1 if texture.flip_h else 1
 		velocity.x = DASH_SPEED * _direction
-		custom_move()
+		custom_move(delta)
 		return
 	if current_state == State.attack: 
 		return
@@ -359,7 +359,7 @@ func _physics_process(delta: float) -> void:
 			texture.frame = 1
 			aura.frame = 1
 			get_tree().create_timer(0.6).timeout.connect(hitbox_to_normal)
-			custom_move()
+			custom_move(delta)
 			return
 
 	# Handle jump.
@@ -377,7 +377,7 @@ func _physics_process(delta: float) -> void:
 				get_tree().create_timer(0.3).timeout.connect(enable_jump_sound)
 			velocity.y = JUMP_VELOCITY
 			get_tree().create_timer(0.6).timeout.connect(hitbox_to_normal)
-			custom_move()
+			custom_move(delta)
 			return
 		# Jump to the right
 		elif direction_jump > 0 and Input.is_action_just_pressed(player + "_jump") and is_on_floor():
@@ -392,7 +392,7 @@ func _physics_process(delta: float) -> void:
 				get_tree().create_timer(0.3).timeout.connect(enable_jump_sound)
 			velocity.y = JUMP_VELOCITY
 			get_tree().create_timer(0.6).timeout.connect(hitbox_to_normal)
-			custom_move()
+			custom_move(delta)
 			return
 		# Jump to the left
 		elif direction_jump < 0 and Input.is_action_just_pressed(player + "_jump") and is_on_floor():
@@ -407,7 +407,7 @@ func _physics_process(delta: float) -> void:
 				get_tree().create_timer(0.3).timeout.connect(enable_jump_sound)
 			velocity.y = JUMP_VELOCITY
 			get_tree().create_timer(0.6).timeout.connect(hitbox_to_normal)
-			custom_move()
+			custom_move(delta)
 			return
 
 	# Handle duck.
@@ -420,7 +420,7 @@ func _physics_process(delta: float) -> void:
 		default_hitbox.disabled = true
 		ducked_hitbox.disabled = false
 		current_state = State.duck
-		custom_move()
+		custom_move(delta)
 		return
 	elif Input.is_action_just_released(player + "_duck") and current_state == State.duck and is_on_floor() :
 		if not is_frame_hurt:
@@ -478,14 +478,12 @@ func _physics_process(delta: float) -> void:
 			move_sound_enabled = false
 			get_tree().create_timer(1.06).timeout.connect(enable_move_sound)
 	
-	move_and_slide()
-	
-	custom_move()
+	custom_move(delta)
 		
 func reset_collision():
 	collisioned = false
 	
-func custom_move():
+func custom_move(delta):
 	velocity.x = lerpf(velocity.x, sign(knockback) * KNOCKBACK_STRENGTH, sqrt(abs(knockback)/KNOCKBACK_STRENGTH))
 	if abs(knockback) > abs(velocity.x):
 		knockback = velocity.x
